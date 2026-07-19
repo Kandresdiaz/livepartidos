@@ -152,31 +152,47 @@
     .score-numbers { font-size: 34px; font-weight: 900; color: #facc15; letter-spacing: 2px; line-height: 1; text-shadow: 0 2px 8px rgba(250, 204, 21, 0.3); }
     .match-time { font-size: 11px; font-weight: 800; color: var(--accent-green); margin-top: 4px; text-transform: uppercase; }
 
-    /* METRICAS Y ESTADÍSTICAS EN VIVO DINÁMICAS */
-    .live-stats-card {
-      background: var(--card-bg);
-      border: 1px solid var(--card-border);
-      border-radius: 14px;
-      padding: 14px;
+    /* SECCIÓN EXCLUSIVA DE INTELIGENCIA DE APUESTAS & COMBINADA IA */
+    .vip-parlay-card {
+      background: linear-gradient(135deg, rgba(245, 158, 11, 0.18), rgba(15, 23, 42, 0.95));
+      border: 1px solid var(--accent-gold);
+      border-radius: 16px;
+      padding: 16px;
       margin-bottom: 12px;
+      box-shadow: 0 8px 25px rgba(245, 158, 11, 0.2);
     }
-    .stat-row-live {
+    .vip-title {
+      font-size: 14px;
+      font-weight: 900;
+      color: var(--accent-gold);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+    .value-item {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin-bottom: 10px;
-    }
-    .stat-label-live {
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid var(--card-border);
+      padding: 8px 12px;
+      border-radius: 8px;
+      margin-bottom: 6px;
       font-size: 12px;
-      font-weight: 800;
-      color: var(--text-secondary);
-      text-transform: uppercase;
     }
-    .stat-val-live {
-      font-size: 15px;
+    .value-prob {
+      color: var(--accent-green);
       font-weight: 900;
-      color: var(--accent-gold);
     }
+
+    .live-stats-card {
+      background: var(--card-bg); border: 1px solid var(--card-border); border-radius: 14px; padding: 14px; margin-bottom: 12px;
+    }
+    .stat-row-live { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
+    .stat-label-live { font-size: 12px; font-weight: 800; color: var(--text-secondary); text-transform: uppercase; }
+    .stat-val-live { font-size: 15px; font-weight: 900; color: var(--accent-gold); }
 
     .win-prob-card {
       background: var(--card-bg); border: 1px solid var(--card-border); border-radius: 14px; padding: 14px; margin-bottom: 12px;
@@ -343,7 +359,7 @@
         <!-- MARCADOR -->
         <div class="score-box">
           <div class="score-numbers" id="scoreText">1 - 0</div>
-          <div class="match-time" id="timeText">⏱️ Min 34' (1ºT)</div>
+          <div class="match-time" id="timeText">⏱️ Min 36' (1ºT)</div>
         </div>
 
         <!-- EQUIPO VISITANTE -->
@@ -353,6 +369,30 @@
           <div class="team-name" id="nameAway">ESPAÑA</div>
         </div>
       </div>
+    </div>
+
+    <!-- MÓDULO EXCLUSIVO DE INTELIGENCIA DE APUESTAS & COMBINADA IA -->
+    <div class="vip-parlay-card">
+      <div class="vip-title">
+        <span>🔥 RADAR DE APUESTAS DE VALOR (IA BET ENGINE)</span>
+      </div>
+
+      <div class="value-item">
+        <span>⚽ <b>Ambos Anotan (BTTS)</b></span>
+        <span class="value-prob">86% Probabilidad (Cuota 1.95)</span>
+      </div>
+      <div class="value-item">
+        <span>⛳ <b>Más de 8.5 Córners Totales</b></span>
+        <span class="value-prob">89% Probabilidad (Cuota 1.85)</span>
+      </div>
+      <div class="value-item">
+        <span>🟨 <b>Más de 4.5 Tarjetas Amarillas</b></span>
+        <span class="value-prob">78% Probabilidad (Cuota 2.10)</span>
+      </div>
+
+      <a href="https://betplay.com.co" target="_blank" class="ad-btn" style="margin-top: 10px; margin-bottom: 0;">
+        🚀 APOSTAR COMBINADA VIP EN BETPLAY (CUOTA 4.85) ⚽
+      </a>
     </div>
 
     <!-- ESTADÍSTICAS Y INCIDENCIAS EN VIVO EN TIEMPO REAL -->
@@ -631,7 +671,7 @@
         document.getElementById('playerHome').innerText = "👑 L. Messi #10";
         document.getElementById('playerAway').innerText = "⚡ L. Yamal #19";
         document.getElementById('scoreText').innerText = "1 - 0";
-        document.getElementById('timeText').innerText = "⏱️ Min 34' (1ºT)";
+        document.getElementById('timeText').innerText = "⏱️ Min 36' (1ºT)";
       }
     }
 
@@ -642,7 +682,7 @@
     }
 
     // MOTOR EN VIVO CONTINUO DE MINUTOS Y ESTADÍSTICAS REALES
-    let liveMinute = 34;
+    let liveMinute = 36;
     let homeCorners = 5;
     let awayCorners = 3;
     let homeShots = 6;
@@ -654,7 +694,6 @@
         const period = liveMinute <= 45 ? "(1ºT)" : (liveMinute <= 90 ? "(2ºT)" : "(Extra)");
         document.getElementById('timeText').innerText = `⏱️ Min ${liveMinute}' ${period}`;
 
-        // Incrementar aleatoriamente remates y córners en vivo cada pocos minutos
         if(liveMinute % 3 === 0) {
           if(Math.random() > 0.5) homeCorners += 1; else awayCorners += 1;
           document.getElementById('cornersVal').innerText = `${homeCorners} - ${awayCorners}`;
@@ -664,12 +703,12 @@
           document.getElementById('shotsVal').innerText = `${homeShots} - ${awayShots}`;
         }
       }
-    }, 12000); // Avanza cada 12 segundos para mantener el dinamismo constante
+    }, 12000);
 
     const fanComments = [
       "<span class='chat-user'>Sofi_Sport:</span> ¡Increíble remate al arco en el minuto " + liveMinute + "!!",
       "<span class='chat-user'>Diego_Futbol:</span> Desborde por la banda y tiro de esquina cobrado.",
-      "<span class='chat-user'>Andres_Bet:</span> ¡La IA acaba de acertar el pronóstico de tiros al arco!",
+      "<span class='chat-user'>Andres_Bet:</span> ¡La IA acaba de acertar el pronóstico de la combinada en Betplay!",
       "<span class='chat-user'>Lucho_10:</span> ¡Atajada impresionante del arquero!"
     ];
 
