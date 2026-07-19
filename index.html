@@ -108,12 +108,14 @@
       backdrop-filter: blur(8px);
     }
 
-    /* ESTADIO / CANCHA DE FÚTBOL ILUSTRADA */
+    /* ESTADIO / CANCHA DE FÚTBOL CON BANDERAS DE FONDO DE IMPACTO */
     .pitch-container {
       position: relative;
       width: 100%;
       height: 230px;
-      background: linear-gradient(180deg, #15803d 0%, #166534 100%);
+      background: 
+        linear-gradient(90deg, rgba(56, 189, 248, 0.25) 0%, transparent 40%, transparent 60%, rgba(239, 68, 68, 0.25) 100%),
+        linear-gradient(180deg, #15803d 0%, #166534 100%);
       border: 3px solid rgba(255, 255, 255, 0.4);
       border-radius: 16px;
       overflow: hidden;
@@ -124,6 +126,7 @@
       justify-content: space-between;
       padding: 14px;
     }
+
     .pitch-container::before {
       content: ''; position: absolute; top: 50%; left: 0; right: 0;
       height: 2px; background: rgba(255, 255, 255, 0.3); transform: translateY(-50%);
@@ -139,11 +142,11 @@
       border-radius: 12px; padding: 12px 14px; width: 100%; margin: auto 0;
     }
     .team-box { flex: 1; text-align: center; }
-    .team-flag { font-size: 28px; display: block; margin-bottom: 2px; }
+    .team-flag { font-size: 32px; display: block; margin-bottom: 2px; filter: drop-shadow(0 2px 4px rgba(0,0,0,0.5)); }
     .player-badge { font-size: 11px; font-weight: 800; color: #facc15; background: rgba(250, 204, 21, 0.15); padding: 2px 6px; border-radius: 4px; display: inline-block; margin-bottom: 2px; }
-    .team-name { font-size: 13px; font-weight: 900; color: #ffffff; text-transform: uppercase; }
+    .team-name { font-size: 13px; font-weight: 900; color: #ffffff; text-transform: uppercase; letter-spacing: 0.5px; }
     .score-box { text-align: center; padding: 0 10px; }
-    .score-numbers { font-size: 32px; font-weight: 900; color: #facc15; letter-spacing: 2px; line-height: 1; }
+    .score-numbers { font-size: 34px; font-weight: 900; color: #facc15; letter-spacing: 2px; line-height: 1; text-shadow: 0 2px 8px rgba(250, 204, 21, 0.3); }
     .match-time { font-size: 11px; font-weight: 800; color: var(--accent-green); margin-top: 4px; text-transform: uppercase; }
 
     .win-prob-card {
@@ -290,7 +293,7 @@
       <script src="https://www.highperformanceformat.com/e68d4e49291b85f5223bc60bffe0f603/invoke.js"></script>
     </div>
 
-    <!-- CANCHA DE FÚTBOL ILUSTRADA CON MARCADOR EN VIVO -->
+    <!-- CANCHA DE FÚTBOL ILUSTRADA CON BANDERAS DE FONDO DE IMPACTO -->
     <div class="pitch-container">
       <div class="pitch-center-circle"></div>
       
@@ -305,7 +308,7 @@
         <!-- MARCADOR -->
         <div class="score-box">
           <div class="score-numbers" id="scoreText">0 - 0</div>
-          <div class="match-time" id="timeText">⏱️ Min 24' (1ºT)</div>
+          <div class="match-time" id="timeText">⏱️ Min 28' (1ºT)</div>
         </div>
 
         <!-- ESPAÑA -->
@@ -449,14 +452,14 @@
     }
 
     // MOTOR DE PARTIDO EN VIVO (INCREMENTO AUTOMÁTICO DE MINUTO)
-    let liveMinute = 24;
+    let liveMinute = 28;
     setInterval(() => {
       if (liveMinute < 90) {
         liveMinute += 1;
         const period = liveMinute <= 45 ? "(1ºT)" : "(2ºT)";
         document.getElementById('timeText').innerText = `⏱️ Min ${liveMinute}' ${period}`;
       }
-    }, 25000); // Avanza cada 25 segundos para mantener el partido activo
+    }, 25000);
 
     // Comentarios simulados dinámicos
     const fanComments = [
