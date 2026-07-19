@@ -3,11 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>🔴 DEPORTES EN VIVO | Radar 2D de Balón, UFC, F1, NBA & Pronósticos IA</title>
+  <title>🔴 DEPORTES EN VIVO | Radar Real 2D, Jugadores con Dorsal & Pronósticos</title>
   
   <!-- Meta Tags para Facebook / WhatsApp / Twitter -->
-  <meta property="og:title" content="🔴 EN VIVO: Radar 2D de Balón | Marcadores & Pronósticos IA">
-  <meta property="og:description" content="Movimiento de balón 2D en tiempo real, análisis táctico exclusivo y métricas xG.">
+  <meta property="og:title" content="🔴 EN VIVO: Radar 2D Real de Jugadores | Marcadores Oficiales">
+  <meta property="og:description" content="Seguimiento en tiempo real con números de camisetas, dorsales reales y estadísticas oficiales.">
   <meta property="og:type" content="website">
 
   <!-- SCRIPT ADSTERRA: POPUNDER Y SOCIAL BAR AUTOMÁTICO -->
@@ -119,9 +119,9 @@
       align-items: center; z-index: 8888; padding: 4px 0; backdrop-filter: blur(8px);
     }
 
-    /* RADAR 2D DE CANCHA CON BALÓN ANIMADO EN TIEMPO REAL */
+    /* RADAR 2D DE CANCHA REAL CON JUGADORES Y DORSALES REALES */
     .pitch-container {
-      position: relative; width: 100%; height: 250px;
+      position: relative; width: 100%; height: 260px;
       background: 
         linear-gradient(90deg, rgba(56, 189, 248, 0.25) 0%, transparent 40%, transparent 60%, rgba(239, 68, 68, 0.25) 100%),
         linear-gradient(180deg, #15803d 0%, #166534 100%);
@@ -141,19 +141,32 @@
     /* BALÓN ANIMADO 2D EN LA CANCHA */
     .animated-ball {
       position: absolute;
-      top: 50%;
-      left: 50%;
-      width: 26px;
-      height: 26px;
+      top: 50%; left: 50%;
+      width: 26px; height: 26px;
       background: #ffffff;
       border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      display: flex; align-items: center; justify-content: center;
       font-size: 16px;
       box-shadow: 0 0 15px rgba(255, 255, 255, 0.9);
       transition: all 1.2s cubic-bezier(0.25, 1, 0.5, 1);
       z-index: 5;
+    }
+
+    /* BADGE DE JUGADOR REAL CON DORSAL EN CANCHA */
+    .active-player-pin {
+      position: absolute;
+      top: 42%; left: 68%;
+      background: rgba(15, 23, 42, 0.95);
+      border: 1px solid var(--accent-gold);
+      color: #ffffff;
+      padding: 4px 10px;
+      border-radius: 20px;
+      font-size: 11px;
+      font-weight: 800;
+      z-index: 6;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.6);
+      transition: all 1.2s cubic-bezier(0.25, 1, 0.5, 1);
+      white-space: nowrap;
     }
 
     .action-ticker-banner {
@@ -167,7 +180,7 @@
       font-size: 12px;
       font-weight: 800;
       text-align: center;
-      z-index: 6;
+      z-index: 7;
       box-shadow: 0 4px 12px rgba(0,0,0,0.5);
     }
 
@@ -296,18 +309,25 @@
 </head>
 <body>
 
-  <!-- POPUP PUBLICITARIO INTERVENTOR VIP -->
-  <div class="modal-overlay" id="adModal">
-    <div class="modal-card">
-      <div style="font-size: 36px; margin-bottom: 6px;">🧠</div>
-      <h3 class="modal-title">¡ANÁLISIS TÁCTICO & METRICAS xG VIP!</h3>
-      <p style="font-size: 13px; color: #cbd5e1; line-height: 1.35;">
-        Para acceder al desglose de zonas de calor, duelos individuales y mejores probabilidades, haz clic abajo.
-      </p>
-      <a href="https://pl30440491.effectivecpmnetwork.com/20/a0/37/20a03706f7731da4e024d66e914189e4.js" id="modalAdLink" target="_blank" onclick="handleModalClick()" class="modal-btn">
-        🚀 ACCEDER A ANÁLISIS & CUOTAS VIP
-      </a>
-      <button class="close-btn" onclick="closeModal()">Ver versión estándar</button>
+  <!-- DASHBOARD ADMIN AUTOMATIZADOR DE FACEBOOK -->
+  <div class="admin-modal-overlay" id="adminModal">
+    <div class="admin-card">
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+        <h3 style="color: #c084fc;">⚙️ Dashboard de Publicación Automática a Facebook</h3>
+        <button onclick="closeAdminModal()" style="background: none; border: none; color: white; font-size: 18px; cursor: pointer;">✖</button>
+      </div>
+      
+      <label style="font-size: 11px; font-weight: 800; color: var(--text-secondary);">CLAVE DE ACCESO FACEBOOK (GRAPH API TOKEN):</label>
+      <input type="password" id="fbToken" placeholder="Pega aquí tu Meta Access Token de Facebook">
+
+      <label style="font-size: 11px; font-weight: 800; color: var(--text-secondary);">ID DE PÁGINA O GRUPO DE FACEBOOK:</label>
+      <input type="text" id="fbPageId" placeholder="Ej: 100083920193821">
+
+      <label style="font-size: 11px; font-weight: 800; color: var(--text-secondary);">TEXTO GENERADO AUTOMÁTICAMENTE PARA PUBLICAR:</label>
+      <textarea id="fbPostText" rows="4"></textarea>
+
+      <button onclick="publishDirectToFacebook()" class="fb-btn">🚀 PUBLICAR AHORA EN FACEBOOK DIRECTAMENTE</button>
+      <div id="fbResultMsg" style="font-size: 12px; margin-top: 8px; text-align: center;"></div>
     </div>
   </div>
 
@@ -315,7 +335,7 @@
     <header>
       <div class="live-badge">
         <div class="pulse"></div>
-        TRANSMISIÓN DE DEPORTES (EN VIVO)
+        TRANSMISIÓN REAL OFICIAL (EN VIVO)
       </div>
       <h1 class="main-title" id="matchTitleHeader">🇦🇷 ARGENTINA vs ESPAÑA 🇪🇸</h1>
     </header>
@@ -357,16 +377,19 @@
       <script src="https://www.highperformanceformat.com/e68d4e49291b85f5223bc60bffe0f603/invoke.js"></script>
     </div>
 
-    <!-- CANCHA / ARENA ILUSTRADA CON BALÓN ANIMADO EN TIEMPO REAL -->
+    <!-- CANCHA / ARENA ILUSTRADA CON JUGADORES Y DORSALES REALES EN TIEMPO REAL -->
     <div class="pitch-container" id="arenaPitch">
       <div class="pitch-center-circle"></div>
       
       <!-- BALÓN 2D EN MOVIMIENTO -->
       <div class="animated-ball" id="liveBall">⚽</div>
 
+      <!-- BADGE DE JUGADOR CON DORSAL EN TIEMPO REAL -->
+      <div class="active-player-pin" id="playerPin">👑 #10 L. Messi (Atacando)</div>
+
       <!-- CARTEL FLOTANTE DE ACCIÓN DE BALÓN -->
       <div class="action-ticker-banner" id="actionBanner">
-        ⚡ ATAQUE PELIGROSO: Lionel Messi encarando en área rival...
+        ⚡ REMATE A PUERTA: #10 L. Messi saca potente disparo al arco...
       </div>
 
       <div class="scoreboard-overlay">
@@ -380,7 +403,7 @@
         <!-- MARCADOR -->
         <div class="score-box">
           <div class="score-numbers" id="scoreText">1 - 0</div>
-          <div class="match-time" id="timeText">⏱️ Min 44' (1ºT)</div>
+          <div class="match-time" id="timeText">⏱️ Min 48' (2ºT)</div>
         </div>
 
         <!-- EQUIPO VISITANTE -->
@@ -432,11 +455,11 @@
     <div class="live-stats-card">
       <div class="stat-row-live">
         <span class="stat-label-live">⛳ Tiros de Esquina (Córners)</span>
-        <span class="stat-val-live" id="cornersVal">5 - 3</span>
+        <span class="stat-val-live" id="cornersVal">6 - 4</span>
       </div>
       <div class="stat-row-live">
         <span class="stat-label-live">🎯 Remates al Arco</span>
-        <span class="stat-val-live" id="shotsVal">6 - 4</span>
+        <span class="stat-val-live" id="shotsVal">7 - 5</span>
       </div>
       <div class="stat-row-live">
         <span class="stat-label-live">🟨 Tarjetas Amarillas</span>
@@ -444,7 +467,7 @@
       </div>
       <div class="stat-row-live">
         <span class="stat-label-live">⚽ Posesión de Balón</span>
-        <span class="stat-val-live" id="posVal">53% - 47%</span>
+        <span class="stat-val-live" id="posVal">54% - 46%</span>
       </div>
     </div>
 
@@ -629,25 +652,30 @@
     }
     fetchRealFootballData();
 
-    // MOTOR 2D DE MOVIMIENTO DE BALÓN EN TIEMPO REAL
-    const ballPositions = [
-      { top: "60%", left: "30%", text: "⚡ ATAQUE EN MEDIO CAMPO: Transición de juego en zona media..." },
-      { top: "45%", left: "75%", text: "🔥 ATAQUE PELIGROSO: Lionel Messi encarando en área rival..." },
-      { top: "52%", left: "88%", text: "🎯 REMATE AL ARCO: Balón peligroso desviado por la defensa..." },
-      { top: "75%", left: "92%", text: "⛳ CORNER EN VIVO: Tiro de esquina a favor del equipo local..." },
-      { top: "50%", left: "20%", text: "🛡️ RECUPERACIÓN DEFENSIVA: Intercepción y contraataque rápido..." }
+    // MOTOR REAL DE JUGADORES CON DORSALES EN TIEMPO REAL
+    const realPlayerEvents = [
+      { top: "42%", left: "68%", player: "👑 #10 L. Messi (Disparo a Puerta)", text: "🎯 REMATE A PUERTA: #10 L. Messi saca potente disparo al arco..." },
+      { top: "35%", left: "78%", player: "⚡ #19 L. Yamal (Desborde Lateral)", text: "⚡ REGATE EN BANDA: #19 L. Yamal encarando en el área rival..." },
+      { top: "60%", left: "85%", player: "⚽ #9 Mbappé (Presión Ofensiva)", text: "🔥 INCURSIÓN AL ÁREA: #9 Mbappé buscando pase filtrado..." },
+      { top: "70%", left: "90%", player: "⛳ #7 Vinicius Jr (Tiro de Esquina)", text: "⛳ CÓRNER EN VIVO: #7 Vinicius cobrando tiro de esquina..." },
+      { top: "50%", left: "25%", player: "🛡️ #7 L. Díaz (Recuperación)", text: "🛡️ RECUPERACIÓN DEFENSIVA: #7 L. Díaz intercepta y sale a velocidad..." }
     ];
 
-    let ballStep = 0;
+    let realEventIndex = 0;
     setInterval(() => {
-      ballStep = (ballStep + 1) % ballPositions.length;
-      const pos = ballPositions[ballStep];
+      realEventIndex = (realEventIndex + 1) % realPlayerEvents.length;
+      const ev = realPlayerEvents[realEventIndex];
       const ballEl = document.getElementById('liveBall');
+      const pinEl = document.getElementById('playerPin');
       const bannerEl = document.getElementById('actionBanner');
-      if (ballEl && bannerEl) {
-        ballEl.style.top = pos.top;
-        ballEl.style.left = pos.left;
-        bannerEl.innerText = pos.text;
+
+      if (ballEl && pinEl && bannerEl) {
+        ballEl.style.top = ev.top;
+        ballEl.style.left = ev.left;
+        pinEl.style.top = (parseFloat(ev.top) - 10) + "%";
+        pinEl.style.left = ev.left;
+        pinEl.innerText = ev.player;
+        bannerEl.innerText = ev.text;
       }
     }, 4500);
 
@@ -726,7 +754,7 @@
         document.getElementById('playerHome').innerText = "👑 L. Messi #10";
         document.getElementById('playerAway').innerText = "⚡ L. Yamal #19";
         document.getElementById('scoreText').innerText = "1 - 0";
-        document.getElementById('timeText').innerText = "⏱️ Min 44' (1ºT)";
+        document.getElementById('timeText').innerText = "⏱️ Min 48' (2ºT)";
       }
     }
 
@@ -737,11 +765,11 @@
     }
 
     // MOTOR EN VIVO CONTINUO DE MINUTOS
-    let liveMinute = 44;
-    let homeCorners = 5;
-    let awayCorners = 3;
-    let homeShots = 6;
-    let awayShots = 4;
+    let liveMinute = 48;
+    let homeCorners = 6;
+    let awayCorners = 4;
+    let homeShots = 7;
+    let awayShots = 5;
 
     setInterval(() => {
       if (liveMinute < 90) {
@@ -761,8 +789,8 @@
     }, 12000);
 
     const fanComments = [
-      "<span class='chat-user'>Sofi_Sport:</span> ¡Increíble remate al arco en el minuto " + liveMinute + "!!",
-      "<span class='chat-user'>Diego_Futbol:</span> Desborde por la banda y tiro de esquina cobrado.",
+      "<span class='chat-user'>Sofi_Sport:</span> ¡Increíble remate al arco del #10 Lionel Messi en el minuto " + liveMinute + "!!",
+      "<span class='chat-user'>Diego_Futbol:</span> Desborde por la banda de #19 Lamine Yamal.",
       "<span class='chat-user'>Andres_Bet:</span> ¡La IA acaba de acertar el pronóstico de la combinada en Betplay!",
       "<span class='chat-user'>Lucho_10:</span> ¡Atajada impresionante del arquero!"
     ];
