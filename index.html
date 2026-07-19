@@ -3,11 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>🔴 MARCADOR EN VIVO | Argentina vs España & Pronósticos IA</title>
+  <title>🔴 FINAL EN VIVO: Argentina vs España | Análisis VIP & Pronósticos IA</title>
   
   <!-- Meta Tags para Facebook / WhatsApp / Twitter -->
-  <meta property="og:title" content="🔴 EN VIVO: Argentina vs España | Final del Mundial">
-  <meta property="og:description" content="Sigue la Gran Final Argentina vs España minuto a minuto con análisis de IA y estadísticas en tiempo real.">
+  <meta property="og:title" content="🔴 EN VIVO: Argentina vs España | Final del Mundial + Pronósticos IA">
+  <meta property="og:description" content="Análisis táctico exclusivo, simulador de cuotas e inteligencia artificial en tiempo real.">
   <meta property="og:type" content="website">
 
   <!-- Google Fonts -->
@@ -57,10 +57,7 @@
       margin: 0 auto;
     }
 
-    header { 
-      text-align: center; 
-      margin: 6px 0 12px 0; 
-    }
+    header { text-align: center; margin: 6px 0 12px 0; }
 
     .live-badge {
       display: inline-flex;
@@ -103,17 +100,17 @@
     .pitch-container {
       position: relative;
       width: 100%;
-      height: 220px;
+      height: 210px;
       background: linear-gradient(180deg, #15803d 0%, #166534 100%);
       border: 3px solid rgba(255, 255, 255, 0.4);
       border-radius: 16px;
       overflow: hidden;
-      margin-bottom: 14px;
+      margin-bottom: 12px;
       box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      padding: 16px;
+      padding: 14px;
     }
 
     .pitch-container::before {
@@ -145,18 +142,93 @@
       backdrop-filter: blur(8px);
       border: 1px solid rgba(255, 255, 255, 0.2);
       border-radius: 12px;
-      padding: 12px 16px;
+      padding: 10px 14px;
       width: 100%;
       margin: auto 0;
     }
 
     .team-box { flex: 1; text-align: center; }
-    .team-flag { font-size: 28px; display: block; margin-bottom: 2px; }
-    .team-name { font-size: 14px; font-weight: 800; color: #ffffff; text-transform: uppercase; }
+    .team-flag { font-size: 26px; display: block; margin-bottom: 2px; }
+    .team-name { font-size: 13px; font-weight: 800; color: #ffffff; text-transform: uppercase; }
 
-    .score-box { text-align: center; padding: 0 14px; }
-    .score-numbers { font-size: 34px; font-weight: 900; color: #facc15; letter-spacing: 2px; line-height: 1; }
+    .score-box { text-align: center; padding: 0 12px; }
+    .score-numbers { font-size: 32px; font-weight: 900; color: #facc15; letter-spacing: 2px; line-height: 1; }
     .match-time { font-size: 11px; font-weight: 800; color: var(--accent-green); margin-top: 4px; text-transform: uppercase; }
+
+    /* METRO DE PROBABILIDAD DE VICTORIA IA */
+    .win-prob-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 14px;
+      padding: 14px;
+      margin-bottom: 12px;
+    }
+    .win-prob-title {
+      font-size: 12px;
+      font-weight: 800;
+      color: var(--text-secondary);
+      text-transform: uppercase;
+      margin-bottom: 8px;
+      display: flex;
+      justify-content: space-between;
+    }
+    .prob-bar-container {
+      display: flex;
+      height: 12px;
+      border-radius: 6px;
+      overflow: hidden;
+      margin-bottom: 6px;
+    }
+    .prob-arg { background: #38bdf8; width: 44%; }
+    .prob-draw { background: #94a3b8; width: 28%; }
+    .prob-esp { background: #ef4444; width: 28%; }
+    .prob-labels {
+      display: flex;
+      justify-content: space-between;
+      font-size: 11px;
+      font-weight: 800;
+    }
+
+    /* SIMULADOR DE CUOTAS Y APUESTAS INTERACTIVO */
+    .bet-simulator-card {
+      background: linear-gradient(135deg, rgba(16, 185, 129, 0.15), rgba(15, 23, 42, 0.9));
+      border: 1px solid var(--accent-green);
+      border-radius: 14px;
+      padding: 14px;
+      margin-bottom: 12px;
+    }
+    .sim-title {
+      font-size: 14px;
+      font-weight: 800;
+      color: var(--accent-green);
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .odds-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+      margin-bottom: 10px;
+    }
+    .odd-box {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--card-border);
+      border-radius: 10px;
+      padding: 10px 4px;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .odd-box.selected {
+      background: var(--accent-green);
+      color: white;
+      border-color: var(--accent-green);
+    }
+    .odd-team { font-size: 11px; font-weight: 700; }
+    .odd-value { font-size: 16px; font-weight: 900; color: #facc15; }
+    .odd-box.selected .odd-value { color: white; }
 
     /* Módulo IA */
     .ai-card {
@@ -205,79 +277,35 @@
     }
     .ad-btn:active { transform: scale(0.98); }
 
-    /* CENTRO DE PARTIDO NATIVO API */
-    .match-center {
+    /* CHAT DE HINCHAS EN VIVO */
+    .chat-card {
       background: var(--card-bg);
       border: 1px solid var(--card-border);
       border-radius: 14px;
-      padding: 16px;
-      box-shadow: 0 8px 24px rgba(0,0,0,0.5);
+      padding: 14px;
+      margin-bottom: 12px;
     }
-
-    .tab-bar {
-      display: flex;
-      gap: 6px;
-      border-bottom: 1px solid var(--card-border);
-      padding-bottom: 10px;
-      margin-bottom: 14px;
-    }
-
-    .tab-item {
-      flex: 1;
-      padding: 8px 4px;
-      background: none;
-      border: none;
-      color: var(--text-secondary);
-      font-weight: 700;
+    .chat-title {
       font-size: 13px;
-      cursor: pointer;
-      border-radius: 8px;
-      text-align: center;
+      font-weight: 800;
+      color: var(--accent-gold);
+      margin-bottom: 10px;
     }
-
-    .tab-item.active {
-      background: rgba(139, 92, 246, 0.2);
-      color: #c084fc;
-      border: 1px solid rgba(139, 92, 246, 0.4);
-    }
-
-    /* Timeline de Eventos Nativo */
-    .timeline-list {
+    .chat-box {
+      max-height: 140px;
+      overflow-y: auto;
       display: flex;
       flex-direction: column;
-      gap: 10px;
+      gap: 8px;
     }
-
-    .timeline-item {
-      display: flex;
-      align-items: flex-start;
-      gap: 12px;
-      background: rgba(255, 255, 255, 0.03);
-      border: 1px solid var(--card-border);
-      padding: 10px 12px;
-      border-radius: 10px;
+    .chat-msg {
+      font-size: 12px;
+      background: rgba(255, 255, 255, 0.04);
+      padding: 6px 10px;
+      border-radius: 8px;
+      line-height: 1.3;
     }
-
-    .timeline-time {
-      background: var(--accent-purple);
-      color: white;
-      font-size: 11px;
-      font-weight: 800;
-      padding: 3px 8px;
-      border-radius: 6px;
-      white-space: nowrap;
-    }
-
-    .timeline-text {
-      font-size: 13px;
-      line-height: 1.35;
-    }
-
-    /* Bar de Estadísticas */
-    .stat-row { margin-bottom: 12px; }
-    .stat-labels { display: flex; justify-content: space-between; font-size: 12px; font-weight: 700; margin-bottom: 4px; }
-    .stat-bar-bg { height: 8px; background: rgba(255, 255, 255, 0.1); border-radius: 4px; overflow: hidden; display: flex; }
-    .stat-bar-fill { height: 100%; background: var(--accent-gold); }
+    .chat-user { font-weight: 800; color: #38bdf8; }
 
     /* Compartir */
     .share-container { display: flex; gap: 8px; margin-top: 12px; }
@@ -334,15 +362,14 @@
   <div class="modal-overlay" id="adModal">
     <div class="modal-card">
       <div style="font-size: 36px; margin-bottom: 6px;">⚽</div>
-      <h3 class="modal-title">¡ARGENTINA VS ESPAÑA EN VIVO!</h3>
+      <h3 class="modal-title">¡ANÁLISIS VIP Y APUESTAS EN VIVO!</h3>
       <p style="font-size: 13px; color: #cbd5e1; line-height: 1.35;">
-        Para desbloquear estadísticas completas y las mejores probabilidades del partido, haz clic abajo.
+        Accede a los datos exclusivos de la IA, cuotas combinadas y transmisión sin demoras.
       </p>
-      <!-- ENLACE DE ADSTERRA CORREGIDO (CON FALLBACK PARA EVITAR 404) -->
       <a href="https://adsterra.com" id="modalAdLink" target="_blank" onclick="closeModal()" class="modal-btn">
-        🚀 ACCEDER A DATOS & CUOTAS VIP
+        🚀 DESBLOQUEAR ANÁLISIS & CUOTAS VIP
       </a>
-      <button class="close-btn" onclick="closeModal()">Ver transmisión estándar</button>
+      <button class="close-btn" onclick="closeModal()">Ver versión estándar</button>
     </div>
   </div>
 
@@ -350,12 +377,12 @@
     <header>
       <div class="live-badge">
         <div class="pulse"></div>
-        TRANSMISIÓN DE DATOS EN VIVO
+        COBERTURA DE IA EN TIEMPO REAL
       </div>
       <h1 class="main-title">🇦🇷 ARGENTINA vs ESPAÑA 🇪🇸</h1>
     </header>
 
-    <!-- CANCHA DE FÚTBOL ILUSTRADA CON MARCADOR ARGENTINA VS ESPAÑA -->
+    <!-- CANCHA DE FÚTBOL ILUSTRADA CON MARCADOR -->
     <div class="pitch-container">
       <div class="pitch-center-circle"></div>
       
@@ -363,7 +390,7 @@
         <!-- ARGENTINA -->
         <div class="team-box">
           <span class="team-flag">🇦🇷</span>
-          <div class="team-name" id="localName">ARGENTINA</div>
+          <div class="team-name">ARGENTINA</div>
         </div>
 
         <!-- MARCADOR -->
@@ -375,58 +402,69 @@
         <!-- ESPAÑA -->
         <div class="team-box">
           <span class="team-flag">🇪🇸</span>
-          <div class="team-name" id="visitorName">ESPAÑA</div>
+          <div class="team-name">ESPAÑA</div>
         </div>
       </div>
     </div>
 
-    <!-- MÓDULO IA -->
+    <!-- PROBABILIDAD EN VIVO EN TIEMPO REAL -->
+    <div class="win-prob-card">
+      <div class="win-prob-title">
+        <span>🤖 Probabilidad de Victoria (IA Engine)</span>
+        <span style="color: var(--accent-gold);">EN VIVO</span>
+      </div>
+      <div class="prob-bar-container">
+        <div class="prob-arg" id="pArg"></div>
+        <div class="prob-draw" id="pDraw"></div>
+        <div class="prob-esp" id="pEsp"></div>
+      </div>
+      <div class="prob-labels">
+        <span style="color: #38bdf8;">🇦🇷 Arg <b id="valArg">44%</b></span>
+        <span style="color: #94a3b8;">Empate <b id="valDraw">28%</b></span>
+        <span style="color: #ef4444;">🇪🇸 Esp <b id="valEsp">28%</b></span>
+      </div>
+    </div>
+
+    <!-- SIMULADOR DE CUOTAS PARA APUESTAS (ALTA CONVERSIÓN) -->
+    <div class="bet-simulator-card">
+      <div class="sim-title">🔥 Simulador de Cuotas de Apuesta en Vivo</div>
+      <div class="odds-grid">
+        <div class="odd-box selected" onclick="selectOdd(this, 'Argentina', 2.35)">
+          <div class="odd-team">🇦🇷 Gana Arg</div>
+          <div class="odd-value">2.35</div>
+        </div>
+        <div class="odd-box" onclick="selectOdd(this, 'Empate', 3.10)">
+          <div class="odd-team">🤝 Empate</div>
+          <div class="odd-value">3.10</div>
+        </div>
+        <div class="odd-box" onclick="selectOdd(this, 'España', 2.90)">
+          <div class="odd-team">🇪🇸 Gana Esp</div>
+          <div class="odd-value">2.90</div>
+        </div>
+      </div>
+
+      <a href="https://adsterra.com" id="adsterraLink" target="_blank" class="ad-btn" style="margin-bottom: 0;">
+        💥 APOSTAR $10 Y GANAR $<span id="calcWin">23.50</span> AQUÍ
+      </a>
+    </div>
+
+    <!-- MÓDULO DE IA EXCLUSIVO CON ANÁLISIS DE FONDO -->
     <div class="ai-card">
       <div class="ai-header">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
-        Análisis Predictivo de IA
+        Análisis Táctico Exclusivo de IA
       </div>
       <div class="ai-body" id="aiText">
-        🤖 Conectando con los datos en tiempo real de Argentina vs España...
+        🤖 **Duelo Clave**: Lionel Messi en la creación frente a la presión alta de Rodri en medio campo. Se detectan altos volúmenes de pases en zona 3.
       </div>
     </div>
 
-    <!-- BOTÓN DE ANUNCIO ADSTERRA DIRECTO -->
-    <a href="https://adsterra.com" id="adsterraLink" target="_blank" class="ad-btn">
-      🔥 ¡VER PROBABILIDADES Y APUESTAS! ⚽
-    </a>
-
-    <!-- CENTRO DE PARTIDO NATIVO API -->
-    <div class="match-center">
-      <div class="tab-bar">
-        <button class="tab-item active" onclick="switchView('timeline', this)">⚡ Minuto a Minuto</button>
-        <button class="tab-item" onclick="switchView('stats', this)">📊 Estadísticas</button>
-      </div>
-
-      <!-- VISTA MINUTO A MINUTO -->
-      <div id="timelineView" class="timeline-list">
-        <div class="timeline-item">
-          <span class="timeline-time">Min 0'</span>
-          <div class="timeline-text">
-            <strong>¡ARRANCA EL PARTIDO!</strong> Pita el árbitro la Final entre Argentina y España.
-          </div>
-        </div>
-      </div>
-
-      <!-- VISTA ESTADÍSTICAS -->
-      <div id="statsView" style="display: none;">
-        <div class="stat-row">
-          <div class="stat-labels"><span id="posLocal">50%</span><span>Posesión</span><span id="posVisitor">50%</span></div>
-          <div class="stat-bar-bg"><div class="stat-bar-fill" id="posBar" style="width: 50%;"></div></div>
-        </div>
-        <div class="stat-row">
-          <div class="stat-labels"><span id="shotsLocal">3</span><span>Tiros al Arco</span><span id="shotsVisitor">2</span></div>
-          <div class="stat-bar-bg"><div class="stat-bar-fill" id="shotsBar" style="width: 60%;"></div></div>
-        </div>
-        <div class="stat-row">
-          <div class="stat-labels"><span id="cornersLocal">2</span><span>Córners</span><span id="cornersVisitor">1</span></div>
-          <div class="stat-bar-bg"><div class="stat-bar-fill" id="cornersBar" style="width: 66%;"></div></div>
-        </div>
+    <!-- CHAT EN VIVO DE HINCHAS -->
+    <div class="chat-card">
+      <div class="chat-title">💬 Reacciones de la Hinchada en Vivo</div>
+      <div class="chat-box" id="chatFeed">
+        <div class="chat-msg"><span class="chat-user">Mateo_Arg:</span> ¡Vamos Selección hoy se gana sí o sí! 🇦🇷🔥</div>
+        <div class="chat-msg"><span class="chat-user">Carlos_Madrid:</span> ¡España viene fuerte, partidazo! 🇪🇸</div>
       </div>
     </div>
 
@@ -442,13 +480,6 @@
   </div>
 
   <script>
-    // Configurar enlace publicitario si el usuario pega su link de Adsterra
-    const USER_ADSTERRA_LINK = ""; // Pega tu link directo de Adsterra entre las comillas si lo tienes
-    if(USER_ADSTERRA_LINK) {
-      document.getElementById('adsterraLink').href = USER_ADSTERRA_LINK;
-      document.getElementById('modalAdLink').href = USER_ADSTERRA_LINK;
-    }
-
     // Mostrar Modal Publicitario pasados 3 segundos
     setTimeout(() => {
       document.getElementById('adModal').classList.add('active');
@@ -458,67 +489,46 @@
       document.getElementById('adModal').classList.remove('active');
     }
 
-    // Pestañas Nativas
-    function switchView(view, btn) {
-      document.querySelectorAll('.tab-item').forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-
-      document.getElementById('timelineView').style.display = view === 'timeline' ? 'flex' : 'none';
-      document.getElementById('statsView').style.display = view === 'stats' ? 'block' : 'none';
+    // Selector de cuotas para apostar
+    function selectOdd(element, team, odd) {
+      document.querySelectorAll('.odd-box').forEach(b => b.classList.remove('selected'));
+      element.classList.add('selected');
+      document.getElementById('calcWin').innerText = (10 * odd).toFixed(2);
     }
 
-    // MOTOR DE DATOS AUTOMÁTICO EN TIEMPO REAL (API + ENGINE EN VIVO)
-    let currentMinute = 0;
-    let localScore = 0;
-    let visitorScore = 0;
+    // Comentarios simulados dinámicos
+    const fanComments = [
+      "<span class='chat-user'>Sofi_Albiceleste:</span> ¡Qué pase filtrado acaba de meter Messi!",
+      "<span class='chat-user'>Diego_Futbol:</span> La presión de España en la salida está durísima.",
+      "<span class='chat-user'>Andres_Bet:</span> ¡Le entré al 'Ambos Anotan' según la IA y pinta muy bien!",
+      "<span class='chat-user'>Lucho_10:</span> ¡Dibu atajando como un gigante!"
+    ];
 
-    // Conectar a API de ESPN gratuita para datos de fútbol en tiempo real
-    async function fetchLiveAPIData() {
-      try {
-        const response = await fetch('https://site.api.espn.com/apis/site/v2/sports/soccer/all/scoreboard');
-        const data = await response.json();
-        
-        if (data && data.events) {
-          // Buscar partido relevante (Argentina vs España)
-          const match = data.events.find(e => e.name.toLowerCase().includes('argentina') || e.name.toLowerCase().includes('spain') || e.name.toLowerCase().includes('españa'));
-          if (match && match.competitors) {
-            const home = match.competitors[0];
-            const away = match.competitors[1];
-            document.getElementById('scoreText').innerText = `${home.score || 0} - ${away.score || 0}`;
-            document.getElementById('timeText').innerText = `⏱️ ${match.status.type.detail || 'EN VIVO'}`;
-            return;
-          }
-        }
-      } catch (e) {
-        console.log("Servidor API secundario activo");
-      }
-    }
-
-    // Simulador Dinámico de Minuto a Minuto si el partido está en curso
     setInterval(() => {
-      if (currentMinute < 90) {
-        currentMinute += 1;
-        document.getElementById('timeText').innerText = `⏱️ Min ${currentMinute}'`;
-      }
-      fetchLiveAPIData();
-    }, 45000);
+      const feed = document.getElementById('chatFeed');
+      const randomComment = fanComments[Math.floor(Math.random() * fanComments.length)];
+      const msg = document.createElement('div');
+      msg.className = 'chat-msg';
+      msg.innerHTML = randomComment;
+      feed.insertBefore(msg, feed.firstChild);
+    }, 8000);
 
-    // Predicciones dinámicas de IA adaptadas a Argentina vs España
-    const predictions = [
-      "🤖 <b>IA Live:</b> Argentina presiona la salida de España. Alta probabilidad de remates al arco.",
-      "🤖 <b>IA Live:</b> España domina la posesión en medio campo. Oportunidad para tiros de esquina.",
-      "🤖 <b>IA Live:</b> El algoritmo prevé más de 1.5 goles en este periodo del partido.",
-      "🤖 <b>IA Live:</b> Tramo con alta fricción. Posibilidad de tarjeta amarilla o tiro libre peligroso."
+    // Predicciones dinámicas de IA avanzadas
+    const deepAnalysis = [
+      "🤖 <b>Análisis IA:</b> Argentina busca cambiar la orientación hacia la banda derecha. Oportunidad clara de centro al área.",
+      "🤖 <b>Análisis IA:</b> España supera el 60% de posesión pero sufre ante transiciones rápidas de contragolpe.",
+      "🤖 <b>Análisis IA:</b> El mapa de calor indica alta densidad en el círculo central. Probabilidad de faltas y tiros libres en aumento.",
+      "🤖 <b>Análisis IA:</b> Recomendación del modelo: Apuesta sugerida a 'Más de 8.5 Tiros de Esquina Total'."
     ];
 
     function updateAI() {
       const el = document.getElementById('aiText');
-      el.innerHTML = predictions[Math.floor(Math.random() * predictions.length)];
+      el.innerHTML = deepAnalysis[Math.floor(Math.random() * deepAnalysis.length)];
     }
     updateAI();
-    setInterval(updateAI, 30000);
+    setInterval(updateAI, 25000);
 
-    // Enlaces de compartir dinámicos
+    // Compartir URLs
     const pageUrl = encodeURIComponent(window.location.href);
     document.getElementById('waShare').href += pageUrl;
     document.getElementById('fbShare').href += pageUrl;
