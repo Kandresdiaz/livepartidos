@@ -86,7 +86,6 @@
       -webkit-text-fill-color: transparent;
     }
 
-    /* ANUNCIOS SLOTS */
     .ad-slot-320 {
       display: flex;
       justify-content: center;
@@ -102,7 +101,6 @@
       padding: 10px;
     }
 
-    /* ESTADIO / CANCHA DE FÚTBOL ILUSTRADA */
     .pitch-container {
       position: relative;
       width: 100%;
@@ -139,7 +137,6 @@
     .score-numbers { font-size: 32px; font-weight: 900; color: #facc15; letter-spacing: 2px; line-height: 1; }
     .match-time { font-size: 11px; font-weight: 800; color: var(--accent-green); margin-top: 4px; text-transform: uppercase; }
 
-    /* METRO DE PROBABILIDAD DE VICTORIA IA */
     .win-prob-card {
       background: var(--card-bg);
       border: 1px solid var(--card-border);
@@ -157,7 +154,6 @@
     .prob-esp { background: #ef4444; width: 28%; transition: width 0.5s; }
     .prob-labels { display: flex; justify-content: space-between; font-size: 11px; font-weight: 800; }
 
-    /* CENTRO DE ANÁLISIS TÁCTICO EXCLUSIVO */
     .tactical-card {
       background: linear-gradient(135deg, rgba(6, 182, 212, 0.15), rgba(15, 23, 42, 0.95));
       border: 1px solid var(--accent-cyan);
@@ -185,7 +181,6 @@
       padding: 8px 10px; border-radius: 0 8px 8px 0;
     }
 
-    /* SIMULADOR DE CUOTAS Y APUESTAS INTERACTIVO */
     .bet-simulator-card {
       background: linear-gradient(135deg, rgba(16, 185, 129, 0.15), rgba(15, 23, 42, 0.9));
       border: 1px solid var(--accent-green);
@@ -202,7 +197,6 @@
     .odd-value { font-size: 16px; font-weight: 900; color: #facc15; }
     .odd-box.selected .odd-value { color: white; }
 
-    /* Botones de Anuncios Adsterra */
     .ad-btn {
       display: flex; align-items: center; justify-content: center; gap: 8px; width: 100%;
       background: linear-gradient(90deg, #10b981 0%, #059669 100%); color: #ffffff;
@@ -212,14 +206,12 @@
     }
     .ad-btn:active { transform: scale(0.98); }
 
-    /* CHAT DE HINCHAS EN VIVO */
     .chat-card { background: var(--card-bg); border: 1px solid var(--card-border); border-radius: 14px; padding: 14px; margin-bottom: 12px; }
     .chat-title { font-size: 13px; font-weight: 800; color: var(--accent-gold); margin-bottom: 10px; }
     .chat-box { max-height: 140px; overflow-y: auto; display: flex; flex-direction: column; gap: 8px; }
     .chat-msg { font-size: 12px; background: rgba(255, 255, 255, 0.04); padding: 6px 10px; border-radius: 8px; line-height: 1.3; }
     .chat-user { font-weight: 800; color: #38bdf8; }
 
-    /* Compartir */
     .share-container { display: flex; gap: 8px; margin-top: 12px; }
     .share-link { flex: 1; text-align: center; padding: 10px; border-radius: 10px; text-decoration: none; font-weight: 700; font-size: 13px; }
     .share-wa { background: rgba(37, 211, 102, 0.15); color: #4ade80; border: 1px solid rgba(37, 211, 102, 0.3); }
@@ -250,7 +242,7 @@
 </head>
 <body>
 
-  <!-- POPUP PUBLICITARIO INTERVENTOR VIP -->
+  <!-- POPUP PUBLICITARIO INTERVENTOR VIP (CIERRE AUTOMÁTICO AL DAR CLIC) -->
   <div class="modal-overlay" id="adModal">
     <div class="modal-card">
       <div style="font-size: 36px; margin-bottom: 6px;">🧠</div>
@@ -258,7 +250,7 @@
       <p style="font-size: 13px; color: #cbd5e1; line-height: 1.35;">
         Para acceder al desglose de zonas de calor, duelos individuales y mejores probabilidades, haz clic abajo.
       </p>
-      <a href="https://pl30440491.effectivecpmnetwork.com/20/a0/37/20a03706f7731da4e024d66e914189e4.js" id="modalAdLink" target="_blank" onclick="closeModal()" class="modal-btn">
+      <a href="https://pl30440491.effectivecpmnetwork.com/20/a0/37/20a03706f7731da4e024d66e914189e4.js" id="modalAdLink" target="_blank" onclick="handleModalClick()" class="modal-btn">
         🚀 ACCEDER A ANÁLISIS & CUOTAS VIP
       </a>
       <button class="close-btn" onclick="closeModal()">Ver versión estándar</button>
@@ -313,7 +305,7 @@
       </div>
     </div>
 
-    <!-- CENTRO DE ANÁLISIS TÁCTICO EXCLUSIVO (LO QUE NO SALE EN GOOGLE) -->
+    <!-- CENTRO DE ANÁLISIS TÁCTICO EXCLUSIVO -->
     <div class="tactical-card">
       <div class="tactical-title">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
@@ -423,6 +415,11 @@
       document.getElementById('adModal').classList.remove('active');
     }
 
+    function handleModalClick() {
+      // Abre la publicidad en pestaña nueva y CIERRA el modal para permitir ver el contenido
+      setTimeout(closeModal, 400);
+    }
+
     // Selector de cuotas para apostar
     function selectOdd(element, team, odd) {
       document.querySelectorAll('.odd-box').forEach(b => b.classList.remove('selected'));
@@ -473,7 +470,6 @@
       const container = document.getElementById('tacticalInsights');
       container.innerHTML = insights.map(i => `<div class="insight-item">${i}</div>`).join('');
 
-      // Dinamismo de xG
       document.getElementById('xgArg').innerText = (1.20 + Math.random() * 0.5).toFixed(2);
       document.getElementById('xgEsp').innerText = (0.80 + Math.random() * 0.4).toFixed(2);
     }
