@@ -639,20 +639,54 @@
       }
     }
 
-    // TOKEN DE FOOTBALL-DATA.ORG CONECTADO REAL
-    const FOOTBALL_DATA_TOKEN = "0201d0a7f1e14a808652ceb2dea0f520";
-
-    async function fetchRealFootballData() {
+    // SINCRONIZADOR DINÁMICO DE ARCHIVO JSON (match_data.json)
+    async function syncMatchDataJSON() {
       try {
-        const res = await fetch("https://api.football-data.org/v4/matches", {
-          headers: { "X-Auth-Token": FOOTBALL_DATA_TOKEN }
-        });
-        const data = await res.json();
-      } catch(e) {}
+        const response = await fetch('match_data.json?t=' + new Date().getTime());
+        if (response.ok) {
+          const data = await response.json();
+          
+          // Actualizar interfaz con datos del JSON en tiempo real
+          document.getElementById('matchTitleHeader').innerText = data.matchTitle;
+          document.getElementById('scoreText').innerText = data.score;
+          document.getElementById('timeText').innerText = data.time;
+          
+          document.getElementById('flagHome').innerText = data.homeTeam.flag;
+          document.getElementById('nameHome').innerText = data.homeTeam.name;
+          document.getElementById('playerHome').innerText = data.homeTeam.playerStar;
+          
+          document.getElementById('flagAway').innerText = data.awayTeam.flag;
+          document.getElementById('nameAway').innerText = data.awayTeam.name;
+          document.getElementById('playerAway').innerText = data.awayTeam.playerStar;
+          
+          document.getElementById('cornersVal').innerText = data.corners;
+          document.getElementById('shotsVal').innerText = data.shots;
+          document.getElementById('posVal').innerText = data.possession;
+          
+          // Actualizar Pin de Jugador Activo en la cancha
+          const ballEl = document.getElementById('liveBall');
+          const pinEl = document.getElementById('playerPin');
+          const bannerEl = document.getElementById('actionBanner');
+          
+          if(data.activePlayer) {
+            ballEl.style.top = data.activePlayer.top;
+            ballEl.style.left = data.activePlayer.left;
+            pinEl.style.top = (parseFloat(data.activePlayer.top) - 10) + "%";
+            pinEl.style.left = data.activePlayer.left;
+            pinEl.innerText = `⚽ #${data.activePlayer.number} ${data.activePlayer.name}`;
+            bannerEl.innerText = data.activePlayer.actionText;
+          }
+        }
+      } catch (e) {
+        console.log("No se pudo cargar el JSON dinámico, usando simulación activa local.");
+      }
     }
-    fetchRealFootballData();
 
-    // MOTOR REAL DE JUGADORES CON DORSALES EN TIEMPO REAL
+    // Ejecutar sincronización del JSON cada 5 segundos
+    setInterval(syncMatchDataJSON, 5000);
+    syncMatchDataJSON();
+
+    // MOTOR REAL DE JUGADORES CON DORSALES EN TIEMPO REAL (Respaldo Local)
     const realPlayerEvents = [
       { top: "42%", left: "68%", player: "👑 #10 L. Messi (Disparo a Puerta)", text: "🎯 REMATE A PUERTA: #10 L. Messi saca potente disparo al arco..." },
       { top: "35%", left: "78%", player: "⚡ #19 L. Yamal (Desborde Lateral)", text: "⚡ REGATE EN BANDA: #19 L. Yamal encarando en el área rival..." },
@@ -663,19 +697,22 @@
 
     let realEventIndex = 0;
     setInterval(() => {
-      realEventIndex = (realEventIndex + 1) % realPlayerEvents.length;
-      const ev = realPlayerEvents[realEventIndex];
-      const ballEl = document.getElementById('liveBall');
-      const pinEl = document.getElementById('playerPin');
-      const bannerEl = document.getElementById('actionBanner');
+      // Solo correr simulación si no se ha sincronizado un JSON externo activo
+      if (document.getElementById('matchTitleHeader').innerText === "ARGENTINA vs ESPAÑA") {
+        realEventIndex = (realEventIndex + 1) % realPlayerEvents.length;
+        const ev = realPlayerEvents[realEventIndex];
+        const ballEl = document.getElementById('liveBall');
+        const pinEl = document.getElementById('playerPin');
+        const bannerEl = document.getElementById('actionBanner');
 
-      if (ballEl && pinEl && bannerEl) {
-        ballEl.style.top = ev.top;
-        ballEl.style.left = ev.left;
-        pinEl.style.top = (parseFloat(ev.top) - 10) + "%";
-        pinEl.style.left = ev.left;
-        pinEl.innerText = ev.player;
-        bannerEl.innerText = ev.text;
+        if (ballEl && pinEl && bannerEl) {
+          ballEl.style.top = ev.top;
+          ballEl.style.left = ev.left;
+          pinEl.style.top = (parseFloat(ev.top) - 10) + "%";
+          pinEl.style.left = ev.left;
+          pinEl.innerText = ev.player;
+          bannerEl.innerText = ev.text;
+        }
       }
     }, 4500);
 
