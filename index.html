@@ -18,7 +18,7 @@
   <style>
     :root {
       --bg-main: #090d16;
-      --card-bg: rgba(21, 28, 44, 0.9);
+      --card-bg: rgba(21, 28, 44, 0.95);
       --card-border: rgba(255, 255, 255, 0.12);
       --accent-gold: #f59e0b;
       --accent-red: #ef4444;
@@ -57,7 +57,6 @@
       margin: 0 auto;
     }
 
-    /* Header ultra fluido */
     header { 
       text-align: center; 
       margin: 6px 0 12px 0; 
@@ -117,7 +116,6 @@
       padding: 16px;
     }
 
-    /* Líneas de la Cancha */
     .pitch-container::before {
       content: '';
       position: absolute;
@@ -137,14 +135,13 @@
       pointer-events: none;
     }
 
-    /* Marcador Dentro de la Cancha */
     .scoreboard-overlay {
       position: relative;
       z-index: 2;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      background: rgba(15, 23, 42, 0.85);
+      background: rgba(15, 23, 42, 0.88);
       backdrop-filter: blur(8px);
       border: 1px solid rgba(255, 255, 255, 0.2);
       border-radius: 12px;
@@ -153,44 +150,13 @@
       margin: auto 0;
     }
 
-    .team-box {
-      flex: 1;
-      text-align: center;
-    }
+    .team-box { flex: 1; text-align: center; }
+    .team-flag { font-size: 28px; display: block; margin-bottom: 2px; }
+    .team-name { font-size: 14px; font-weight: 800; color: #ffffff; text-transform: uppercase; }
 
-    .team-flag {
-      font-size: 28px;
-      display: block;
-      margin-bottom: 2px;
-    }
-
-    .team-name {
-      font-size: 14px;
-      font-weight: 800;
-      color: #ffffff;
-      text-transform: uppercase;
-    }
-
-    .score-box {
-      text-align: center;
-      padding: 0 14px;
-    }
-
-    .score-numbers {
-      font-size: 34px;
-      font-weight: 900;
-      color: #facc15;
-      letter-spacing: 2px;
-      line-height: 1;
-    }
-
-    .match-time {
-      font-size: 11px;
-      font-weight: 800;
-      color: var(--accent-green);
-      margin-top: 4px;
-      text-transform: uppercase;
-    }
+    .score-box { text-align: center; padding: 0 14px; }
+    .score-numbers { font-size: 34px; font-weight: 900; color: #facc15; letter-spacing: 2px; line-height: 1; }
+    .match-time { font-size: 11px; font-weight: 800; color: var(--accent-green); margin-top: 4px; text-transform: uppercase; }
 
     /* Módulo IA */
     .ai-card {
@@ -239,20 +205,98 @@
     }
     .ad-btn:active { transform: scale(0.98); }
 
-    /* Container de Widget Responsivo */
-    .widget-box {
+    /* CENTRO DE PARTIDO NATIVO (SIN PUBLICIDAD TERCERA) */
+    .match-center {
       background: var(--card-bg);
       border: 1px solid var(--card-border);
       border-radius: 14px;
-      overflow: hidden;
+      padding: 16px;
       box-shadow: 0 8px 24px rgba(0,0,0,0.5);
-      width: 100%;
     }
-    .widget-box iframe {
-      width: 100%;
-      height: 480px;
+
+    .tab-bar {
+      display: flex;
+      gap: 6px;
+      border-bottom: 1px solid var(--card-border);
+      padding-bottom: 10px;
+      margin-bottom: 14px;
+    }
+
+    .tab-item {
+      flex: 1;
+      padding: 8px 4px;
+      background: none;
       border: none;
-      display: block;
+      color: var(--text-secondary);
+      font-weight: 700;
+      font-size: 13px;
+      cursor: pointer;
+      border-radius: 8px;
+      text-align: center;
+    }
+
+    .tab-item.active {
+      background: rgba(139, 92, 246, 0.2);
+      color: #c084fc;
+      border: 1px solid rgba(139, 92, 246, 0.4);
+    }
+
+    /* Timeline de Eventos Nativo */
+    .timeline-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .timeline-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid var(--card-border);
+      padding: 10px 12px;
+      border-radius: 10px;
+    }
+
+    .timeline-time {
+      background: var(--accent-purple);
+      color: white;
+      font-size: 11px;
+      font-weight: 800;
+      padding: 3px 8px;
+      border-radius: 6px;
+      white-space: nowrap;
+    }
+
+    .timeline-text {
+      font-size: 13px;
+      line-height: 1.35;
+    }
+
+    /* Bar de Estadísticas */
+    .stat-row {
+      margin-bottom: 12px;
+    }
+
+    .stat-labels {
+      display: flex;
+      justify-content: space-between;
+      font-size: 12px;
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+
+    .stat-bar-bg {
+      height: 8px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 4px;
+      overflow: hidden;
+      display: flex;
+    }
+
+    .stat-bar-fill {
+      height: 100%;
+      background: var(--accent-gold);
     }
 
     /* Compartir */
@@ -304,36 +348,18 @@
       transform: scale(0.9);
       transition: transform 0.3s ease;
     }
-    .modal-overlay.active .modal-card {
-      transform: scale(1);
-    }
-    .modal-title {
-      font-size: 19px;
-      font-weight: 900;
-      color: var(--accent-gold);
-      margin-bottom: 8px;
-    }
+    .modal-overlay.active .modal-card { transform: scale(1); }
+    .modal-title { font-size: 19px; font-weight: 900; color: var(--accent-gold); margin-bottom: 8px; }
     .modal-btn {
-      display: block;
-      width: 100%;
+      display: block; width: 100%;
       background: linear-gradient(90deg, #ef4444, #f59e0b);
-      color: white;
-      font-weight: 800;
-      font-size: 16px;
-      padding: 14px;
-      border-radius: 10px;
-      text-decoration: none;
-      margin-top: 14px;
-      box-shadow: 0 4px 15px rgba(245, 158, 11, 0.4);
+      color: white; font-weight: 800; font-size: 16px;
+      padding: 14px; border-radius: 10px; text-decoration: none;
+      margin-top: 14px; box-shadow: 0 4px 15px rgba(245, 158, 11, 0.4);
     }
     .close-btn {
-      margin-top: 10px;
-      background: none;
-      border: none;
-      color: var(--text-secondary);
-      font-size: 12px;
-      cursor: pointer;
-      text-decoration: underline;
+      margin-top: 10px; background: none; border: none;
+      color: var(--text-secondary); font-size: 12px; cursor: pointer; text-decoration: underline;
     }
   </style>
 </head>
@@ -363,7 +389,7 @@
       <h1 class="main-title">⚽ LA GRAN FINAL 🏆</h1>
     </header>
 
-    <!-- ESTADIO Y CANCHA DE FÚTBOL CON MARCADOR -->
+    <!-- CANCHA DE FÚTBOL ILUSTRADA -->
     <div class="pitch-container">
       <div class="pitch-center-circle"></div>
       
@@ -371,19 +397,19 @@
         <!-- EQUIPO LOCAL -->
         <div class="team-box">
           <span class="team-flag">🇦🇷</span>
-          <div class="team-name">ARGENTINA</div>
+          <div class="team-name" id="localName">ARGENTINA</div>
         </div>
 
         <!-- MARCADOR -->
         <div class="score-box">
-          <div class="score-numbers">0 - 0</div>
-          <div class="match-time">⏱️ Min 0'</div>
+          <div class="score-numbers" id="scoreText">0 - 0</div>
+          <div class="match-time" id="timeText">⏱️ Min 0'</div>
         </div>
 
         <!-- EQUIPO VISITANTE -->
         <div class="team-box">
           <span class="team-flag">🇫🇷</span>
-          <div class="team-name">FRANCIA</div>
+          <div class="team-name" id="visitorName">FRANCIA</div>
         </div>
       </div>
     </div>
@@ -399,14 +425,43 @@
       </div>
     </div>
 
-    <!-- BOTÓN DE ANUNCIO ADSTERRA -->
+    <!-- BOTÓN DE ANUNCIO ADSTERRA DIRECTO -->
     <a href="PEGA_TU_DIRECT_LINK_DE_ADSTERRA_AQUI" id="adsterraLink" target="_blank" class="ad-btn">
       🔥 ¡VER PROBABILIDADES Y APUESTAS! ⚽
     </a>
 
-    <!-- WIDGET EN VIVO EN DIRECTO -->
-    <div class="widget-box">
-      <iframe src="https://www.scorebat.com/embed/livescore/" allowfullscreen></iframe>
+    <!-- CENTRO DE PARTIDO NATIVO (CERO ANUNCIOS DE TERCEROS) -->
+    <div class="match-center">
+      <div class="tab-bar">
+        <button class="tab-item active" onclick="switchView('timeline', this)">⚡ Minuto a Minuto</button>
+        <button class="tab-item" onclick="switchView('stats', this)">📊 Estadísticas</button>
+      </div>
+
+      <!-- VISTA MINUTO A MINUTO -->
+      <div id="timelineView" class="timeline-list">
+        <div class="timeline-item">
+          <span class="timeline-time">Min 0'</span>
+          <div class="timeline-text">
+            <strong>¡ARRANCA EL PARTIDO!</strong> Silbatazo inicial de la Gran Final. Sigue aquí todas las incidencias.
+          </div>
+        </div>
+      </div>
+
+      <!-- VISTA ESTADÍSTICAS -->
+      <div id="statsView" style="display: none;">
+        <div class="stat-row">
+          <div class="stat-labels"><span>52%</span><span>Posesión</span><span>48%</span></div>
+          <div class="stat-bar-bg"><div class="stat-bar-fill" style="width: 52%;"></div></div>
+        </div>
+        <div class="stat-row">
+          <div class="stat-labels"><span>4</span><span>Tiros al Arco</span><span>3</span></div>
+          <div class="stat-bar-bg"><div class="stat-bar-fill" style="width: 57%;"></div></div>
+        </div>
+        <div class="stat-row">
+          <div class="stat-labels"><span>3</span><span>Córners</span><span>2</span></div>
+          <div class="stat-bar-bg"><div class="stat-bar-fill" style="width: 60%;"></div></div>
+        </div>
+      </div>
     </div>
 
     <!-- COMPARTIR EN REDES -->
@@ -428,6 +483,15 @@
 
     function closeModal() {
       document.getElementById('adModal').classList.remove('active');
+    }
+
+    // Pestañas Nativas
+    function switchView(view, btn) {
+      document.querySelectorAll('.tab-item').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+
+      document.getElementById('timelineView').style.display = view === 'timeline' ? 'flex' : 'none';
+      document.getElementById('statsView').style.display = view === 'stats' ? 'block' : 'none';
     }
 
     // Predicciones dinámicas de IA
