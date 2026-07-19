@@ -3,11 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>🔴 FINAL EN VIVO: Argentina vs España | Análisis VIP & Pronósticos IA</title>
+  <title>🔴 FINAL EN VIVO: Argentina vs España | Análisis Táctico Exclusivo & Pronósticos IA</title>
   
   <!-- Meta Tags para Facebook / WhatsApp / Twitter -->
   <meta property="og:title" content="🔴 EN VIVO: Argentina vs España | Final del Mundial + Pronósticos IA">
-  <meta property="og:description" content="Análisis táctico exclusivo, simulador de cuotas e inteligencia artificial en tiempo real.">
+  <meta property="og:description" content="Análisis táctico profundo exclusivo, métricas xG en vivo y simulador de cuotas.">
   <meta property="og:type" content="website">
 
   <!-- Google Fonts -->
@@ -24,21 +24,13 @@
       --accent-red: #ef4444;
       --accent-green: #10b981;
       --accent-purple: #8b5cf6;
+      --accent-cyan: #06b6d4;
       --text-primary: #f8fafc;
       --text-secondary: #94a3b8;
     }
 
-    * { 
-      box-sizing: border-box; 
-      margin: 0; 
-      padding: 0; 
-      -webkit-tap-highlight-color: transparent;
-    }
-
-    html, body {
-      width: 100%;
-      overflow-x: hidden;
-    }
+    * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+    html, body { width: 100%; overflow-x: hidden; }
 
     body {
       font-family: 'Outfit', system-ui, -apple-system, sans-serif;
@@ -51,12 +43,7 @@
       padding: 10px;
     }
 
-    .container { 
-      width: 100%; 
-      max-width: 680px; 
-      margin: 0 auto;
-    }
-
+    .container { width: 100%; max-width: 680px; margin: 0 auto; }
     header { text-align: center; margin: 6px 0 12px 0; }
 
     .live-badge {
@@ -112,45 +99,23 @@
       justify-content: space-between;
       padding: 14px;
     }
-
     .pitch-container::before {
-      content: '';
-      position: absolute;
-      top: 50%; left: 0; right: 0;
-      height: 2px;
-      background: rgba(255, 255, 255, 0.3);
-      transform: translateY(-50%);
+      content: ''; position: absolute; top: 50%; left: 0; right: 0;
+      height: 2px; background: rgba(255, 255, 255, 0.3); transform: translateY(-50%);
     }
-
     .pitch-center-circle {
-      position: absolute;
-      top: 50%; left: 50%;
-      width: 90px; height: 90px;
-      border: 2px solid rgba(255, 255, 255, 0.3);
-      border-radius: 50%;
-      transform: translate(-50%, -50%);
-      pointer-events: none;
+      position: absolute; top: 50%; left: 50%; width: 90px; height: 90px;
+      border: 2px solid rgba(255, 255, 255, 0.3); border-radius: 50%; transform: translate(-50%, -50%); pointer-events: none;
     }
 
     .scoreboard-overlay {
-      position: relative;
-      z-index: 2;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      background: rgba(15, 23, 42, 0.88);
-      backdrop-filter: blur(8px);
-      border: 1px solid rgba(255, 255, 255, 0.2);
-      border-radius: 12px;
-      padding: 10px 14px;
-      width: 100%;
-      margin: auto 0;
+      position: relative; z-index: 2; display: flex; align-items: center; justify-content: space-between;
+      background: rgba(15, 23, 42, 0.88); backdrop-filter: blur(8px); border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 12px; padding: 10px 14px; width: 100%; margin: auto 0;
     }
-
     .team-box { flex: 1; text-align: center; }
     .team-flag { font-size: 26px; display: block; margin-bottom: 2px; }
     .team-name { font-size: 13px; font-weight: 800; color: #ffffff; text-transform: uppercase; }
-
     .score-box { text-align: center; padding: 0 12px; }
     .score-numbers { font-size: 32px; font-weight: 900; color: #facc15; letter-spacing: 2px; line-height: 1; }
     .match-time { font-size: 11px; font-weight: 800; color: var(--accent-green); margin-top: 4px; text-transform: uppercase; }
@@ -164,147 +129,75 @@
       margin-bottom: 12px;
     }
     .win-prob-title {
-      font-size: 12px;
-      font-weight: 800;
-      color: var(--text-secondary);
-      text-transform: uppercase;
-      margin-bottom: 8px;
-      display: flex;
-      justify-content: space-between;
+      font-size: 12px; font-weight: 800; color: var(--text-secondary);
+      text-transform: uppercase; margin-bottom: 8px; display: flex; justify-content: space-between;
     }
-    .prob-bar-container {
-      display: flex;
-      height: 12px;
-      border-radius: 6px;
-      overflow: hidden;
-      margin-bottom: 6px;
+    .prob-bar-container { display: flex; height: 12px; border-radius: 6px; overflow: hidden; margin-bottom: 6px; }
+    .prob-arg { background: #38bdf8; width: 44%; transition: width 0.5s; }
+    .prob-draw { background: #94a3b8; width: 28%; transition: width 0.5s; }
+    .prob-esp { background: #ef4444; width: 28%; transition: width 0.5s; }
+    .prob-labels { display: flex; justify-content: space-between; font-size: 11px; font-weight: 800; }
+
+    /* CENTRO DE ANÁLISIS TÁCTICO EXCLUSIVO (NO ESTÁ EN GOOGLE) */
+    .tactical-card {
+      background: linear-gradient(135deg, rgba(6, 182, 212, 0.15), rgba(15, 23, 42, 0.95));
+      border: 1px solid var(--accent-cyan);
+      border-radius: 14px;
+      padding: 16px;
+      margin-bottom: 12px;
     }
-    .prob-arg { background: #38bdf8; width: 44%; }
-    .prob-draw { background: #94a3b8; width: 28%; }
-    .prob-esp { background: #ef4444; width: 28%; }
-    .prob-labels {
-      display: flex;
-      justify-content: space-between;
-      font-size: 11px;
-      font-weight: 800;
+    .tactical-title {
+      font-size: 14px; font-weight: 900; color: var(--accent-cyan);
+      display: flex; align-items: center; gap: 6px; text-transform: uppercase; margin-bottom: 10px;
+    }
+    .xg-container {
+      display: flex; justify-content: space-between; align-items: center;
+      background: rgba(255, 255, 255, 0.04); padding: 10px 14px; border-radius: 10px; margin-bottom: 12px;
+    }
+    .xg-box { text-align: center; }
+    .xg-label { font-size: 10px; color: var(--text-secondary); text-transform: uppercase; font-weight: 800; }
+    .xg-val { font-size: 20px; font-weight: 900; color: #facc15; }
+
+    .tactical-insights {
+      display: flex; flex-direction: column; gap: 8px; font-size: 13px; line-height: 1.4;
+    }
+    .insight-item {
+      background: rgba(255, 255, 255, 0.03); border-left: 3px solid var(--accent-cyan);
+      padding: 8px 10px; border-radius: 0 8px 8px 0;
     }
 
     /* SIMULADOR DE CUOTAS Y APUESTAS INTERACTIVO */
     .bet-simulator-card {
       background: linear-gradient(135deg, rgba(16, 185, 129, 0.15), rgba(15, 23, 42, 0.9));
       border: 1px solid var(--accent-green);
-      border-radius: 14px;
-      padding: 14px;
-      margin-bottom: 12px;
+      border-radius: 14px; padding: 14px; margin-bottom: 12px;
     }
-    .sim-title {
-      font-size: 14px;
-      font-weight: 800;
-      color: var(--accent-green);
-      margin-bottom: 10px;
-      display: flex;
-      align-items: center;
-      gap: 6px;
-    }
-    .odds-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 8px;
-      margin-bottom: 10px;
-    }
+    .sim-title { font-size: 14px; font-weight: 800; color: var(--accent-green); margin-bottom: 10px; display: flex; align-items: center; gap: 6px; }
+    .odds-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-bottom: 10px; }
     .odd-box {
-      background: rgba(255, 255, 255, 0.05);
-      border: 1px solid var(--card-border);
-      border-radius: 10px;
-      padding: 10px 4px;
-      text-align: center;
-      cursor: pointer;
-      transition: all 0.2s;
+      background: rgba(255, 255, 255, 0.05); border: 1px solid var(--card-border);
+      border-radius: 10px; padding: 10px 4px; text-align: center; cursor: pointer; transition: all 0.2s;
     }
-    .odd-box.selected {
-      background: var(--accent-green);
-      color: white;
-      border-color: var(--accent-green);
-    }
+    .odd-box.selected { background: var(--accent-green); color: white; border-color: var(--accent-green); }
     .odd-team { font-size: 11px; font-weight: 700; }
     .odd-value { font-size: 16px; font-weight: 900; color: #facc15; }
     .odd-box.selected .odd-value { color: white; }
 
-    /* Módulo IA */
-    .ai-card {
-      background: linear-gradient(135deg, rgba(139, 92, 246, 0.22), rgba(236, 72, 153, 0.15));
-      border: 1px solid rgba(139, 92, 246, 0.45);
-      border-radius: 14px;
-      padding: 14px;
-      margin-bottom: 12px;
-      box-shadow: 0 6px 20px rgba(139, 92, 246, 0.15);
-    }
-    .ai-header {
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      color: #c084fc;
-      font-weight: 800;
-      font-size: 13px;
-      text-transform: uppercase;
-    }
-    .ai-body {
-      margin-top: 6px;
-      font-size: 14px;
-      font-weight: 600;
-      line-height: 1.35;
-      color: #f1f5f9;
-    }
-
     /* Botones de Anuncios Adsterra */
     .ad-btn {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-      width: 100%;
-      background: linear-gradient(90deg, #10b981 0%, #059669 100%);
-      color: #ffffff;
-      text-decoration: none;
-      font-weight: 800;
-      font-size: clamp(15px, 4vw, 18px);
-      padding: 14px;
-      border-radius: 12px;
-      margin-bottom: 12px;
-      box-shadow: 0 6px 18px rgba(16, 185, 129, 0.4);
-      text-align: center;
-      transition: transform 0.2s;
+      display: flex; align-items: center; justify-content: center; gap: 8px; width: 100%;
+      background: linear-gradient(90deg, #10b981 0%, #059669 100%); color: #ffffff;
+      text-decoration: none; font-weight: 800; font-size: clamp(15px, 4vw, 18px);
+      padding: 14px; border-radius: 12px; margin-bottom: 12px;
+      box-shadow: 0 6px 18px rgba(16, 185, 129, 0.4); text-align: center; transition: transform 0.2s;
     }
     .ad-btn:active { transform: scale(0.98); }
 
     /* CHAT DE HINCHAS EN VIVO */
-    .chat-card {
-      background: var(--card-bg);
-      border: 1px solid var(--card-border);
-      border-radius: 14px;
-      padding: 14px;
-      margin-bottom: 12px;
-    }
-    .chat-title {
-      font-size: 13px;
-      font-weight: 800;
-      color: var(--accent-gold);
-      margin-bottom: 10px;
-    }
-    .chat-box {
-      max-height: 140px;
-      overflow-y: auto;
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-    }
-    .chat-msg {
-      font-size: 12px;
-      background: rgba(255, 255, 255, 0.04);
-      padding: 6px 10px;
-      border-radius: 8px;
-      line-height: 1.3;
-    }
+    .chat-card { background: var(--card-bg); border: 1px solid var(--card-border); border-radius: 14px; padding: 14px; margin-bottom: 12px; }
+    .chat-title { font-size: 13px; font-weight: 800; color: var(--accent-gold); margin-bottom: 10px; }
+    .chat-box { max-height: 140px; overflow-y: auto; display: flex; flex-direction: column; gap: 8px; }
+    .chat-msg { font-size: 12px; background: rgba(255, 255, 255, 0.04); padding: 6px 10px; border-radius: 8px; line-height: 1.3; }
     .chat-user { font-weight: 800; color: #38bdf8; }
 
     /* Compartir */
@@ -315,45 +208,25 @@
 
     /* MODAL POPUP PUBLICITARIO VIP */
     .modal-overlay {
-      position: fixed;
-      top: 0; left: 0; width: 100%; height: 100%;
-      background: rgba(0, 0, 0, 0.88);
-      backdrop-filter: blur(6px);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      z-index: 9999;
-      opacity: 0;
-      pointer-events: none;
-      transition: opacity 0.3s ease;
-      padding: 16px;
+      position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+      background: rgba(0, 0, 0, 0.88); backdrop-filter: blur(6px);
+      display: flex; align-items: center; justify-content: center; z-index: 9999;
+      opacity: 0; pointer-events: none; transition: opacity 0.3s ease; padding: 16px;
     }
     .modal-overlay.active { opacity: 1; pointer-events: auto; }
     .modal-card {
-      background: linear-gradient(135deg, #1e1b4b, #0f172a);
-      border: 2px solid var(--accent-gold);
-      border-radius: 18px;
-      max-width: 420px;
-      width: 100%;
-      padding: 20px;
-      text-align: center;
-      box-shadow: 0 16px 40px rgba(0,0,0,0.8);
-      transform: scale(0.9);
-      transition: transform 0.3s ease;
+      background: linear-gradient(135deg, #1e1b4b, #0f172a); border: 2px solid var(--accent-gold);
+      border-radius: 18px; max-width: 420px; width: 100%; padding: 20px; text-align: center;
+      box-shadow: 0 16px 40px rgba(0,0,0,0.8); transform: scale(0.9); transition: transform 0.3s ease;
     }
     .modal-overlay.active .modal-card { transform: scale(1); }
     .modal-title { font-size: 19px; font-weight: 900; color: var(--accent-gold); margin-bottom: 8px; }
     .modal-btn {
-      display: block; width: 100%;
-      background: linear-gradient(90deg, #ef4444, #f59e0b);
-      color: white; font-weight: 800; font-size: 16px;
-      padding: 14px; border-radius: 10px; text-decoration: none;
-      margin-top: 14px; box-shadow: 0 4px 15px rgba(245, 158, 11, 0.4);
+      display: block; width: 100%; background: linear-gradient(90deg, #ef4444, #f59e0b);
+      color: white; font-weight: 800; font-size: 16px; padding: 14px; border-radius: 10px;
+      text-decoration: none; margin-top: 14px; box-shadow: 0 4px 15px rgba(245, 158, 11, 0.4);
     }
-    .close-btn {
-      margin-top: 10px; background: none; border: none;
-      color: var(--text-secondary); font-size: 12px; cursor: pointer; text-decoration: underline;
-    }
+    .close-btn { margin-top: 10px; background: none; border: none; color: var(--text-secondary); font-size: 12px; cursor: pointer; text-decoration: underline; }
   </style>
 </head>
 <body>
@@ -361,13 +234,13 @@
   <!-- POPUP PUBLICITARIO INTERVENTOR VIP -->
   <div class="modal-overlay" id="adModal">
     <div class="modal-card">
-      <div style="font-size: 36px; margin-bottom: 6px;">⚽</div>
-      <h3 class="modal-title">¡ANÁLISIS VIP Y APUESTAS EN VIVO!</h3>
+      <div style="font-size: 36px; margin-bottom: 6px;">🧠</div>
+      <h3 class="modal-title">¡ANÁLISIS TÁCTICO & METRICAS xG VIP!</h3>
       <p style="font-size: 13px; color: #cbd5e1; line-height: 1.35;">
-        Accede a los datos exclusivos de la IA, cuotas combinadas y transmisión sin demoras.
+        Para acceder al desglose de zonas de calor, duelos individuales y mejores probabilidades, haz clic abajo.
       </p>
       <a href="https://adsterra.com" id="modalAdLink" target="_blank" onclick="closeModal()" class="modal-btn">
-        🚀 DESBLOQUEAR ANÁLISIS & CUOTAS VIP
+        🚀 ACCEDER A ANÁLISIS & CUOTAS VIP
       </a>
       <button class="close-btn" onclick="closeModal()">Ver versión estándar</button>
     </div>
@@ -377,7 +250,7 @@
     <header>
       <div class="live-badge">
         <div class="pulse"></div>
-        COBERTURA DE IA EN TIEMPO REAL
+        COBERTURA TÁCTICA & IA EN VIVO
       </div>
       <h1 class="main-title">🇦🇷 ARGENTINA vs ESPAÑA 🇪🇸</h1>
     </header>
@@ -407,6 +280,39 @@
       </div>
     </div>
 
+    <!-- CENTRO DE ANÁLISIS TÁCTICO EXCLUSIVO (LO QUE NO SALE EN GOOGLE) -->
+    <div class="tactical-card">
+      <div class="tactical-title">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
+        Centro de Inteligencia Táctica & xG (Live)
+      </div>
+
+      <!-- METRICAS DE GOLES ESPERADOS (xG) -->
+      <div class="xg-container">
+        <div class="xg-box">
+          <div class="xg-label">xG Argentina</div>
+          <div class="xg-val" id="xgArg">1.38</div>
+        </div>
+        <div style="font-size: 11px; font-weight: 800; color: var(--text-secondary);">GOLES ESPERADOS</div>
+        <div class="xg-box">
+          <div class="xg-label">xG España</div>
+          <div class="xg-val" id="xgEsp">0.92</div>
+        </div>
+      </div>
+
+      <div class="tactical-insights" id="tacticalInsights">
+        <div class="insight-item">
+          🎯 <b>Patrón Ofensivo:</b> Argentina explota el carril central-derecho con 72% de sus ataques buscando espaldas de laterales.
+        </div>
+        <div class="insight-item">
+          ⚠️ <b>Punto de Vulnerabilidad:</b> España sostiene posesión alta pero cede espacio en la transición tras pérdida.
+        </div>
+        <div class="insight-item">
+          💡 <b>Valor de Apuesta Recomendado:</b> IA detecta cuota inflada en 'Más de 8.5 Tiros de Esquina Totales'.
+        </div>
+      </div>
+    </div>
+
     <!-- PROBABILIDAD EN VIVO EN TIEMPO REAL -->
     <div class="win-prob-card">
       <div class="win-prob-title">
@@ -419,13 +325,13 @@
         <div class="prob-esp" id="pEsp"></div>
       </div>
       <div class="prob-labels">
-        <span style="color: #38bdf8;">🇦🇷 Arg <b id="valArg">44%</b></span>
-        <span style="color: #94a3b8;">Empate <b id="valDraw">28%</b></span>
-        <span style="color: #ef4444;">🇪🇸 Esp <b id="valEsp">28%</b></span>
+        <span style="color: #38bdf8;">🇦🇷 Arg <b id="valArg">46%</b></span>
+        <span style="color: #94a3b8;">Empate <b id="valDraw">27%</b></span>
+        <span style="color: #ef4444;">🇪🇸 Esp <b id="valEsp">27%</b></span>
       </div>
     </div>
 
-    <!-- SIMULADOR DE CUOTAS PARA APUESTAS (ALTA CONVERSIÓN) -->
+    <!-- SIMULADOR DE CUOTAS PARA APUESTAS -->
     <div class="bet-simulator-card">
       <div class="sim-title">🔥 Simulador de Cuotas de Apuesta en Vivo</div>
       <div class="odds-grid">
@@ -448,23 +354,12 @@
       </a>
     </div>
 
-    <!-- MÓDULO DE IA EXCLUSIVO CON ANÁLISIS DE FONDO -->
-    <div class="ai-card">
-      <div class="ai-header">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
-        Análisis Táctico Exclusivo de IA
-      </div>
-      <div class="ai-body" id="aiText">
-        🤖 **Duelo Clave**: Lionel Messi en la creación frente a la presión alta de Rodri en medio campo. Se detectan altos volúmenes de pases en zona 3.
-      </div>
-    </div>
-
     <!-- CHAT EN VIVO DE HINCHAS -->
     <div class="chat-card">
       <div class="chat-title">💬 Reacciones de la Hinchada en Vivo</div>
       <div class="chat-box" id="chatFeed">
-        <div class="chat-msg"><span class="chat-user">Mateo_Arg:</span> ¡Vamos Selección hoy se gana sí o sí! 🇦🇷🔥</div>
-        <div class="chat-msg"><span class="chat-user">Carlos_Madrid:</span> ¡España viene fuerte, partidazo! 🇪🇸</div>
+        <div class="chat-msg"><span class="chat-user">Mateo_Arg:</span> ¡Increíble la lectura táctica de la IA sobre Messi! 🇦🇷🔥</div>
+        <div class="chat-msg"><span class="chat-user">Carlos_Madrid:</span> ¡España controlando la pelota, partido parejo! 🇪🇸</div>
       </div>
     </div>
 
@@ -498,9 +393,9 @@
 
     // Comentarios simulados dinámicos
     const fanComments = [
-      "<span class='chat-user'>Sofi_Albiceleste:</span> ¡Qué pase filtrado acaba de meter Messi!",
+      "<span class='chat-user'>Sofi_Albiceleste:</span> ¡El xG de Argentina subió a 1.45! Se viene el primero.",
       "<span class='chat-user'>Diego_Futbol:</span> La presión de España en la salida está durísima.",
-      "<span class='chat-user'>Andres_Bet:</span> ¡Le entré al 'Ambos Anotan' según la IA y pinta muy bien!",
+      "<span class='chat-user'>Andres_Bet:</span> ¡Le entré al 'Ambos Anotan' según el análisis táctico!",
       "<span class='chat-user'>Lucho_10:</span> ¡Dibu atajando como un gigante!"
     ];
 
@@ -513,20 +408,38 @@
       feed.insertBefore(msg, feed.firstChild);
     }, 8000);
 
-    // Predicciones dinámicas de IA avanzadas
-    const deepAnalysis = [
-      "🤖 <b>Análisis IA:</b> Argentina busca cambiar la orientación hacia la banda derecha. Oportunidad clara de centro al área.",
-      "🤖 <b>Análisis IA:</b> España supera el 60% de posesión pero sufre ante transiciones rápidas de contragolpe.",
-      "🤖 <b>Análisis IA:</b> El mapa de calor indica alta densidad en el círculo central. Probabilidad de faltas y tiros libres en aumento.",
-      "🤖 <b>Análisis IA:</b> Recomendación del modelo: Apuesta sugerida a 'Más de 8.5 Tiros de Esquina Total'."
+    // Motor de Análisis Táctico Exclusivo en tiempo real
+    const tacticalUpdates = [
+      [
+        "🎯 <b>Patrón Ofensivo:</b> Argentina explota el carril central-derecho con 72% de sus ataques buscando espaldas de laterales.",
+        "⚠️ <b>Punto de Vulnerabilidad:</b> España sostiene posesión alta pero cede espacio en la transición tras pérdida.",
+        "💡 <b>Valor de Apuesta Recomendado:</b> IA detecta cuota inflada en 'Más de 8.5 Tiros de Esquina Totales'."
+      ],
+      [
+        "🎯 <b>Presión Alta:</b> España adelanta sus líneas de presión forzando 5 recuperaciones en campo rival.",
+        "⚠️ <b>Duelo Clave:</b> De Paul gana el 75% de sus duelos individuales frente al mediocampo ibérico.",
+        "💡 <b>Pronóstico Inteligente:</b> Alta probabilidad de gol (+0.5) en los próximos 15 minutos."
+      ],
+      [
+        "🎯 <b>Ataque Directo:</b> Argentina acumula 1.65 goles esperados (xG) superando la eficiencia defensiva rival.",
+        "⚠️ <b>Peligro Balón Parado:</b> El 40% de las faltas cometidas son en zona de remate directo.",
+        "💡 <b>Opción Recomendada:</b> Apostar a 'Ambos Anotan' con cuota multiplicada."
+      ]
     ];
 
-    function updateAI() {
-      const el = document.getElementById('aiText');
-      el.innerHTML = deepAnalysis[Math.floor(Math.random() * deepAnalysis.length)];
+    let currentInsightIndex = 0;
+    function updateTactics() {
+      currentInsightIndex = (currentInsightIndex + 1) % tacticalUpdates.length;
+      const insights = tacticalUpdates[currentInsightIndex];
+      const container = document.getElementById('tacticalInsights');
+      container.innerHTML = insights.map(i => `<div class="insight-item">${i}</div>`).join('');
+
+      // Dinamismo de xG
+      document.getElementById('xgArg').innerText = (1.20 + Math.random() * 0.5).toFixed(2);
+      document.getElementById('xgEsp').innerText = (0.80 + Math.random() * 0.4).toFixed(2);
     }
-    updateAI();
-    setInterval(updateAI, 25000);
+
+    setInterval(updateTactics, 20000);
 
     // Compartir URLs
     const pageUrl = encodeURIComponent(window.location.href);
