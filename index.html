@@ -44,6 +44,7 @@
       flex-direction: column;
       align-items: center;
       padding: 10px;
+      padding-bottom: 70px; /* Espacio para barra de anuncios flotante inferior */
     }
 
     .container { width: 100%; max-width: 680px; margin: 0 auto; }
@@ -94,11 +95,18 @@
       min-height: 50px;
     }
 
-    .ad-native-container {
-      margin: 12px 0;
-      background: rgba(255,255,255,0.03);
-      border-radius: 12px;
-      padding: 10px;
+    /* BARRA DE ANUNCIOS FLOTANTE INFERIOR (MÁXIMO CPM) */
+    .sticky-bottom-ad {
+      position: fixed;
+      bottom: 0; left: 0; width: 100%;
+      background: rgba(15, 23, 42, 0.95);
+      border-top: 1px solid var(--accent-gold);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 8888;
+      padding: 4px 0;
+      backdrop-filter: blur(8px);
     }
 
     .pitch-container {
@@ -197,12 +205,13 @@
     .odd-value { font-size: 16px; font-weight: 900; color: #facc15; }
     .odd-box.selected .odd-value { color: white; }
 
+    /* BOTONES DE APUESTAS DIRIGIDOS A BETPLAY */
     .ad-btn {
       display: flex; align-items: center; justify-content: center; gap: 8px; width: 100%;
-      background: linear-gradient(90deg, #10b981 0%, #059669 100%); color: #ffffff;
+      background: linear-gradient(90deg, #dc2626 0%, #ef4444 100%); color: #ffffff;
       text-decoration: none; font-weight: 800; font-size: clamp(15px, 4vw, 18px);
       padding: 14px; border-radius: 12px; margin-bottom: 12px;
-      box-shadow: 0 6px 18px rgba(16, 185, 129, 0.4); text-align: center; transition: transform 0.2s;
+      box-shadow: 0 6px 18px rgba(239, 68, 68, 0.4); text-align: center; transition: transform 0.2s;
     }
     .ad-btn:active { transform: scale(0.98); }
 
@@ -242,7 +251,7 @@
 </head>
 <body>
 
-  <!-- POPUP PUBLICITARIO INTERVENTOR VIP (CIERRE AUTOMÁTICO AL DAR CLIC) -->
+  <!-- POPUP PUBLICITARIO INTERVENTOR VIP -->
   <div class="modal-overlay" id="adModal">
     <div class="modal-card">
       <div style="font-size: 36px; margin-bottom: 6px;">🧠</div>
@@ -356,9 +365,9 @@
       </div>
     </div>
 
-    <!-- SIMULADOR DE CUOTAS PARA APUESTAS -->
+    <!-- SIMULADOR DE CUOTAS PARA APUESTAS (VINCULADO A BETPLAY) -->
     <div class="bet-simulator-card">
-      <div class="sim-title">🔥 Simulador de Cuotas de Apuesta en Vivo</div>
+      <div class="sim-title">⚽ VER CUOTAS Y APOSTAR EN BETPLAY EN VIVO</div>
       <div class="odds-grid">
         <div class="odd-box selected" onclick="selectOdd(this, 'Argentina', 2.35)">
           <div class="odd-team">🇦🇷 Gana Arg</div>
@@ -374,15 +383,10 @@
         </div>
       </div>
 
-      <a href="https://pl30440491.effectivecpmnetwork.com/20/a0/37/20a03706f7731da4e024d66e914189e4.js" id="adsterraLink" target="_blank" class="ad-btn" style="margin-bottom: 0;">
-        💥 APOSTAR $10 Y GANAR $<span id="calcWin">23.50</span> AQUÍ
+      <!-- BOTÓN VINCULADO DIRECTO A BETPLAY -->
+      <a href="https://betplay.com.co" id="adsterraLink" target="_blank" class="ad-btn" style="margin-bottom: 0;">
+        🔥 APOSTAR EN BETPLAY - GANAR $<span id="calcWin">23.50</span> ⚽
       </a>
-    </div>
-
-    <!-- ANUNCIO ADSTERRA: BANDERA NATIVA -->
-    <div class="ad-native-container">
-      <script async="async" data-cfasync="false" src="https://pl30440494.effectivecpmnetwork.com/e10629fc08ba8d80ddaab618e1150505/invoke.js"></script>
-      <div id="container-e10629fc08ba8d80ddaab618e1150505"></div>
     </div>
 
     <!-- CHAT EN VIVO DE HINCHAS -->
@@ -405,6 +409,20 @@
     </div>
   </div>
 
+  <!-- BARRA DE ANUNCIO ADSTERRA FLOTANTE EN EL PIE DE PÁGINA (SIEMPRE VISIBLE) -->
+  <div class="sticky-bottom-ad">
+    <script>
+      atOptions = {
+        'key' : 'e68d4e49291b85f5223bc60bffe0f603',
+        'format' : 'iframe',
+        'height' : 50,
+        'width' : 320,
+        'params' : {}
+      };
+    </script>
+    <script src="https://www.highperformanceformat.com/e68d4e49291b85f5223bc60bffe0f603/invoke.js"></script>
+  </div>
+
   <script>
     // Mostrar Modal Publicitario pasados 3 segundos
     setTimeout(() => {
@@ -416,11 +434,10 @@
     }
 
     function handleModalClick() {
-      // Abre la publicidad en pestaña nueva y CIERRA el modal para permitir ver el contenido
       setTimeout(closeModal, 400);
     }
 
-    // Selector de cuotas para apostar
+    // Selector de cuotas para apostar en Betplay
     function selectOdd(element, team, odd) {
       document.querySelectorAll('.odd-box').forEach(b => b.classList.remove('selected'));
       element.classList.add('selected');
@@ -431,7 +448,7 @@
     const fanComments = [
       "<span class='chat-user'>Sofi_Albiceleste:</span> ¡El xG de Argentina subió a 1.45! Se viene el primero.",
       "<span class='chat-user'>Diego_Futbol:</span> La presión de España en la salida está durísima.",
-      "<span class='chat-user'>Andres_Bet:</span> ¡Le entré al 'Ambos Anotan' según el análisis táctico!",
+      "<span class='chat-user'>Andres_Bet:</span> ¡Le entré al 'Ambos Anotan' según el análisis táctico en Betplay!",
       "<span class='chat-user'>Lucho_10:</span> ¡Dibu atajando como un gigante!"
     ];
 
@@ -449,17 +466,17 @@
       [
         "🎯 <b>Patrón Ofensivo:</b> Argentina explota el carril central-derecho con 72% de sus ataques buscando espaldas de laterales.",
         "⚠️ <b>Punto de Vulnerabilidad:</b> España sostiene posesión alta pero cede espacio en la transición tras pérdida.",
-        "💡 <b>Valor de Apuesta Recomendado:</b> IA detecta cuota inflada en 'Más de 8.5 Tiros de Esquina Totales'."
+        "💡 <b>Valor de Apuesta Recomendado:</b> IA detecta cuota inflada en Betplay para 'Más de 8.5 Tiros de Esquina Totales'."
       ],
       [
         "🎯 <b>Presión Alta:</b> España adelanta sus líneas de presión forzando 5 recuperaciones en campo rival.",
         "⚠️ <b>Duelo Clave:</b> De Paul gana el 75% de sus duelos individuales frente al mediocampo ibérico.",
-        "💡 <b>Pronóstico Inteligente:</b> Alta probabilidad de gol (+0.5) en los próximos 15 minutos."
+        "💡 <b>Pronóstico Inteligente:</b> Alta probabilidad de gol (+0.5) en los próximos 15 minutos en Betplay."
       ],
       [
         "🎯 <b>Ataque Directo:</b> Argentina acumula 1.65 goles esperados (xG) superando la eficiencia defensiva rival.",
         "⚠️ <b>Peligro Balón Parado:</b> El 40% de las faltas cometidas son en zona de remate directo.",
-        "💡 <b>Opción Recomendada:</b> Apostar a 'Ambos Anotan' con cuota multiplicada."
+        "💡 <b>Opción Recomendada:</b> Apostar a 'Ambos Anotan' en Betplay con cuota multiplicada."
       ]
     ];
 
