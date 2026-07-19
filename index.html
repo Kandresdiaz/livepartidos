@@ -3,10 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>🔴 FINAL EN VIVO: Argentina vs España | Cobertura en Tiempo Real</title>
+  <title>🔴 PARTIDOS EN VIVO | Marcador, IA & Análisis Táctico</title>
   
   <!-- Meta Tags para Facebook / WhatsApp / Twitter -->
-  <meta property="og:title" content="🔴 EN VIVO: Argentina vs España | Final del Mundial + Pronósticos IA">
+  <meta property="og:title" content="🔴 EN VIVO: Partidos Hoy | Marcador & Pronósticos IA">
   <meta property="og:description" content="Análisis táctico profundo exclusivo, métricas xG en vivo y simulador de cuotas.">
   <meta property="og:type" content="website">
 
@@ -87,6 +87,29 @@
       -webkit-text-fill-color: transparent;
     }
 
+    /* SELECTOR MULTI-PARTIDO PARA PRÓXIMOS EVENTOS */
+    .match-selector-bar {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--card-border);
+      border-radius: 10px;
+      padding: 8px 12px;
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+    }
+    .match-select {
+      background: #0f172a;
+      color: white;
+      border: 1px solid var(--accent-purple);
+      padding: 6px 10px;
+      border-radius: 8px;
+      font-weight: 700;
+      font-size: 12px;
+      width: 100%;
+    }
+
     .ad-slot-320 {
       display: flex;
       justify-content: center;
@@ -108,7 +131,7 @@
       backdrop-filter: blur(8px);
     }
 
-    /* ESTADIO / CANCHA DE FÚTBOL CON BANDERAS DE FONDO DE IMPACTO */
+    /* ESTADIO / CANCHA DE FÚTBOL CON BANDERAS */
     .pitch-container {
       position: relative;
       width: 100%;
@@ -126,7 +149,6 @@
       justify-content: space-between;
       padding: 14px;
     }
-
     .pitch-container::before {
       content: ''; position: absolute; top: 50%; left: 0; right: 0;
       height: 2px; background: rgba(255, 255, 255, 0.3); transform: translateY(-50%);
@@ -276,8 +298,19 @@
         <div class="pulse"></div>
         PARTIDO EN CURSO (EN VIVO)
       </div>
-      <h1 class="main-title">🇦🇷 ARGENTINA vs ESPAÑA 🇪🇸</h1>
+      <h1 class="main-title" id="matchTitleHeader">🇦🇷 ARGENTINA vs ESPAÑA 🇪🇸</h1>
     </header>
+
+    <!-- SELECTOR DE PARTIDO REUTILIZABLE -->
+    <div class="match-selector-bar">
+      <span style="font-size: 11px; font-weight: 800; color: var(--accent-gold); white-space: nowrap;">⚽ CAMBIAR PARTIDO:</span>
+      <select class="match-select" onchange="changeMatch(this.value)">
+        <option value="arg-esp">🇦🇷 Argentina vs España 🇪🇸 (Final)</option>
+        <option value="rm-barca">🇪🇸 Real Madrid vs Barcelona 🇪🇸 (El Clásico)</option>
+        <option value="col-arg">🇨🇴 Colombia vs Argentina 🇦🇷 (Eliminatorias)</option>
+        <option value="mcity-rm">🏴󠁧󠁢󠁥󠁮󠁧󠁿 Man City vs Real Madrid 🇪🇸 (Champions)</option>
+      </select>
+    </div>
 
     <!-- ANUNCIO ADSTERRA: BANNER 320x50 -->
     <div class="ad-slot-320">
@@ -293,29 +326,29 @@
       <script src="https://www.highperformanceformat.com/e68d4e49291b85f5223bc60bffe0f603/invoke.js"></script>
     </div>
 
-    <!-- CANCHA DE FÚTBOL ILUSTRADA CON BANDERAS DE FONDO DE IMPACTO -->
+    <!-- CANCHA DE FÚTBOL ILUSTRADA -->
     <div class="pitch-container">
       <div class="pitch-center-circle"></div>
       
       <div class="scoreboard-overlay">
-        <!-- ARGENTINA -->
+        <!-- EQUIPO LOCAL -->
         <div class="team-box">
-          <span class="team-flag">🇦🇷</span>
-          <div class="player-badge">👑 L. Messi #10</div>
-          <div class="team-name">ARGENTINA</div>
+          <span class="team-flag" id="flagHome">🇦🇷</span>
+          <div class="player-badge" id="playerHome">👑 L. Messi #10</div>
+          <div class="team-name" id="nameHome">ARGENTINA</div>
         </div>
 
         <!-- MARCADOR -->
         <div class="score-box">
           <div class="score-numbers" id="scoreText">0 - 0</div>
-          <div class="match-time" id="timeText">⏱️ Min 28' (1ºT)</div>
+          <div class="match-time" id="timeText">⏱️ Min 32' (1ºT)</div>
         </div>
 
-        <!-- ESPAÑA -->
+        <!-- EQUIPO VISITANTE -->
         <div class="team-box">
-          <span class="team-flag">🇪🇸</span>
-          <div class="player-badge">⚡ L. Yamal #19</div>
-          <div class="team-name">ESPAÑA</div>
+          <span class="team-flag" id="flagAway">🇪🇸</span>
+          <div class="player-badge" id="playerAway">⚡ L. Yamal #19</div>
+          <div class="team-name" id="nameAway">ESPAÑA</div>
         </div>
       </div>
     </div>
@@ -330,25 +363,25 @@
       <!-- METRICAS DE GOLES ESPERADOS (xG) -->
       <div class="xg-container">
         <div class="xg-box">
-          <div class="xg-label">xG Argentina</div>
-          <div class="xg-val" id="xgArg">1.45</div>
+          <div class="xg-label" id="xgLabelHome">xG Local</div>
+          <div class="xg-val" id="xgArg">1.48</div>
         </div>
         <div style="font-size: 11px; font-weight: 800; color: var(--text-secondary);">GOLES ESPERADOS</div>
         <div class="xg-box">
-          <div class="xg-label">xG España</div>
+          <div class="xg-label" id="xgLabelAway">xG Visitante</div>
           <div class="xg-val" id="xgEsp">1.12</div>
         </div>
       </div>
 
       <div class="tactical-insights" id="tacticalInsights">
         <div class="insight-item">
-          👑 <b>Lionel Messi:</b> Se posiciona entre líneas en la espalda de Rodri para generar superioridad numérica.
+          👑 <b>Análisis Estrella:</b> Presión alta en el área rival y transiciones verticales rápidas.
         </div>
         <div class="insight-item">
-          ⚡ <b>Lamine Yamal:</b> Busca el mano a mano en banda derecha para desbordar la marca lateral.
+          ⚡ <b>Duelo Clave:</b> Superioridad numérica en bandas para generar tiros de esquina.
         </div>
         <div class="insight-item">
-          💡 <b>Pronóstico IA:</b> Alta intensidad en área rival. Apuesta recomendada a córners o gol en 1T.
+          💡 <b>Pronóstico IA:</b> Alta intensidad ofensiva. Oportunidad ideal para apostar en vivo.
         </div>
       </div>
     </div>
@@ -365,9 +398,9 @@
         <div class="prob-esp" id="pEsp"></div>
       </div>
       <div class="prob-labels">
-        <span style="color: #38bdf8;">🇦🇷 Arg <b id="valArg">48%</b></span>
-        <span style="color: #94a3b8;">Empate <b id="valDraw">26%</b></span>
-        <span style="color: #ef4444;">🇪🇸 Esp <b id="valEsp">26%</b></span>
+        <span style="color: #38bdf8;" id="lblHome">Local <b>48%</b></span>
+        <span style="color: #94a3b8;">Empate <b>26%</b></span>
+        <span style="color: #ef4444;" id="lblAway">Visitante <b>26%</b></span>
       </div>
     </div>
 
@@ -375,16 +408,16 @@
     <div class="bet-simulator-card">
       <div class="sim-title">⚽ VER CUOTAS Y APOSTAR EN BETPLAY EN VIVO</div>
       <div class="odds-grid">
-        <div class="odd-box selected" onclick="selectOdd(this, 'Argentina', 2.35)">
-          <div class="odd-team">🇦🇷 Gana Arg</div>
+        <div class="odd-box selected" onclick="selectOdd(this, 'Local', 2.35)">
+          <div class="odd-team" id="oddBtnHome">Gana Local</div>
           <div class="odd-value">2.35</div>
         </div>
         <div class="odd-box" onclick="selectOdd(this, 'Empate', 3.10)">
           <div class="odd-team">🤝 Empate</div>
           <div class="odd-value">3.10</div>
         </div>
-        <div class="odd-box" onclick="selectOdd(this, 'España', 2.90)">
-          <div class="odd-team">🇪🇸 Gana Esp</div>
+        <div class="odd-box" onclick="selectOdd(this, 'Visitante', 2.90)">
+          <div class="odd-team" id="oddBtnAway">Gana Visitante</div>
           <div class="odd-value">2.90</div>
         </div>
       </div>
@@ -399,15 +432,15 @@
     <div class="chat-card">
       <div class="chat-title">💬 Reacciones de la Hinchada en Vivo</div>
       <div class="chat-box" id="chatFeed">
-        <div class="chat-msg"><span class="chat-user">Mateo_Arg:</span> ¡Que partidazo de Messi hoy! 🇦🇷🔥</div>
-        <div class="chat-msg"><span class="chat-user">Carlos_Madrid:</span> ¡España controlando la pelota, partido parejo! 🇪🇸</div>
+        <div class="chat-msg"><span class="chat-user">Mateo_Futbol:</span> ¡Qué partidazo estamos viendo hoy! 🔥</div>
+        <div class="chat-msg"><span class="chat-user">Carlos_Madrid:</span> ¡El control de pelota está espectacular!</div>
       </div>
     </div>
 
     <!-- COMPARTIR EN REDES -->
     <div class="share-title">📲 COMPARTE ESTA PÁGINA CON TUS AMIGOS Y GRUPOS</div>
     <div class="share-container">
-      <a href="https://api.whatsapp.com/send?text=Sigue la Final Argentina vs España con análisis de IA y estadísticas aquí: " id="waShare" target="_blank" class="share-link share-wa">
+      <a href="https://api.whatsapp.com/send?text=Sigue este partidazo en vivo con análisis de IA y estadísticas aquí: " id="waShare" target="_blank" class="share-link share-wa">
         📲 Compartir en WhatsApp
       </a>
       <a href="https://www.facebook.com/sharer/sharer.php?u=" id="fbShare" target="_blank" class="share-link share-fb">
@@ -444,6 +477,43 @@
       setTimeout(closeModal, 400);
     }
 
+    // Cambiar partido dinámicamente
+    function changeMatch(matchKey) {
+      if(matchKey === 'rm-barca') {
+        document.getElementById('matchTitleHeader').innerText = "🇪🇸 REAL MADRID vs BARCELONA 🇪🇸";
+        document.getElementById('flagHome').innerText = "🇪🇸";
+        document.getElementById('flagAway').innerText = "🇪🇸";
+        document.getElementById('nameHome').innerText = "REAL MADRID";
+        document.getElementById('nameAway').innerText = "BARCELONA";
+        document.getElementById('playerHome').innerText = "👑 Mbappé #9";
+        document.getElementById('playerAway').innerText = "⚡ L. Yamal #19";
+      } else if(matchKey === 'col-arg') {
+        document.getElementById('matchTitleHeader').innerText = "🇨🇴 COLOMBIA vs ARGENTINA 🇦🇷";
+        document.getElementById('flagHome').innerText = "🇨🇴";
+        document.getElementById('flagAway').innerText = "🇦🇷";
+        document.getElementById('nameHome').innerText = "COLOMBIA";
+        document.getElementById('nameAway').innerText = "ARGENTINA";
+        document.getElementById('playerHome').innerText = "⚡ L. Díaz #7";
+        document.getElementById('playerAway').innerText = "👑 L. Messi #10";
+      } else if(matchKey === 'mcity-rm') {
+        document.getElementById('matchTitleHeader').innerText = "🏴󠁧󠁢󠁥󠁮󠁧󠁿 MAN CITY vs REAL MADRID 🇪🇸";
+        document.getElementById('flagHome').innerText = "🏴󠁧󠁢󠁥󠁮󠁧󠁿";
+        document.getElementById('flagAway').innerText = "🇪🇸";
+        document.getElementById('nameHome').innerText = "MAN CITY";
+        document.getElementById('nameAway').innerText = "REAL MADRID";
+        document.getElementById('playerHome').innerText = "⚡ Haaland #9";
+        document.getElementById('playerAway').innerText = "👑 Vinicius #7";
+      } else {
+        document.getElementById('matchTitleHeader').innerText = "🇦🇷 ARGENTINA vs ESPAÑA 🇪🇸";
+        document.getElementById('flagHome').innerText = "🇦🇷";
+        document.getElementById('flagAway').innerText = "🇪🇸";
+        document.getElementById('nameHome').innerText = "ARGENTINA";
+        document.getElementById('nameAway').innerText = "ESPAÑA";
+        document.getElementById('playerHome').innerText = "👑 L. Messi #10";
+        document.getElementById('playerAway').innerText = "⚡ L. Yamal #19";
+      }
+    }
+
     // Selector de cuotas para apostar en Betplay
     function selectOdd(element, team, odd) {
       document.querySelectorAll('.odd-box').forEach(b => b.classList.remove('selected'));
@@ -451,8 +521,8 @@
       document.getElementById('calcWin').innerText = (10 * odd).toFixed(2);
     }
 
-    // MOTOR DE PARTIDO EN VIVO (INCREMENTO AUTOMÁTICO DE MINUTO)
-    let liveMinute = 28;
+    // MOTOR DE PARTIDO EN VIVO
+    let liveMinute = 32;
     setInterval(() => {
       if (liveMinute < 90) {
         liveMinute += 1;
@@ -463,10 +533,10 @@
 
     // Comentarios simulados dinámicos
     const fanComments = [
-      "<span class='chat-user'>Sofi_Albiceleste:</span> ¡El xG de Argentina subió a 1.48 con el remate de Messi!",
-      "<span class='chat-user'>Diego_Futbol:</span> Lamine Yamal está buscando el desborde constante.",
-      "<span class='chat-user'>Andres_Bet:</span> ¡Le entré al 'Ambos Anotan' en Betplay según la IA!",
-      "<span class='chat-user'>Lucho_10:</span> ¡Dibu atajando como un gigante!"
+      "<span class='chat-user'>Sofi_Albiceleste:</span> ¡El xG del equipo local subió con la llegada al área!",
+      "<span class='chat-user'>Diego_Futbol:</span> Desborde constante por las bandas.",
+      "<span class='chat-user'>Andres_Bet:</span> ¡Le entré a las cuotas en Betplay según la IA!",
+      "<span class='chat-user'>Lucho_10:</span> ¡Atajadas clave en este tramo del encuentro!"
     ];
 
     setInterval(() => {
@@ -478,22 +548,17 @@
       feed.insertBefore(msg, feed.firstChild);
     }, 8000);
 
-    // Motor de Análisis Táctico Exclusivo en tiempo real
+    // Motor de Análisis Táctico
     const tacticalUpdates = [
       [
-        "👑 <b>Lionel Messi:</b> Se posiciona entre líneas en la espalda de Rodri para generar superioridad numérica.",
-        "⚡ <b>Lamine Yamal:</b> Busca el mano a mano en banda derecha para desbordar la marca lateral.",
-        "💡 <b>Pronóstico IA:</b> El patrón de ataque prevé gol en el primer tiempo."
+        "👑 <b>Ataque Directo:</b> Creación entre líneas para generar superioridad numérica.",
+        "⚡ <b>Desborde en Bandas:</b> Mano a mano constante para forzar la marca lateral.",
+        "💡 <b>Pronóstico IA:</b> El patrón de ataque prevé gol en los próximos minutos."
       ],
       [
-        "🎯 <b>Presión Alta:</b> España adelanta sus líneas de presión forzando recuperaciones en campo rival.",
-        "⚠️ <b>Duelo Clave:</b> De Paul gana los duelos individuales frente al mediocampo ibérico.",
-        "💡 <b>Pronóstico Inteligente:</b> Alta probabilidad de gol (+0.5) en los próximos minutos en Betplay."
-      ],
-      [
-        "🎯 <b>Ataque Directo:</b> Argentina acumula 1.65 goles esperados (xG) superando la eficiencia defensiva rival.",
-        "⚠️ <b>Peligro Balón Parado:</b> El 40% de las faltas cometidas son en zona de remate directo.",
-        "💡 <b>Opción Recomendada:</b> Apostar a 'Ambos Anotan' en Betplay con cuota multiplicada."
+        "🎯 <b>Presión Alta:</b> Líneas adelantadas forzando recuperaciones en campo rival.",
+        "⚠️ <b>Duelo Clave:</b> Intensidad en los duelos individuales en zona media.",
+        "💡 <b>Pronóstico Inteligente:</b> Alta probabilidad de tiro libre o córner en Betplay."
       ]
     ];
 
