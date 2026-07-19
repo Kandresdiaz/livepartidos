@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>🔴 FINAL EN VIVO: Argentina vs España | Análisis Táctico Exclusivo & Pronósticos IA</title>
+  <title>🔴 FINAL EN VIVO: Argentina vs España | Cobertura en Tiempo Real</title>
   
   <!-- Meta Tags para Facebook / WhatsApp / Twitter -->
   <meta property="og:title" content="🔴 EN VIVO: Argentina vs España | Final del Mundial + Pronósticos IA">
@@ -108,7 +108,7 @@
       backdrop-filter: blur(8px);
     }
 
-    /* ESTADIO / CANCHA DE FÚTBOL ILUSTRADA CON AVATARES DE JUGADORES */
+    /* ESTADIO / CANCHA DE FÚTBOL ILUSTRADA */
     .pitch-container {
       position: relative;
       width: 100%;
@@ -158,9 +158,9 @@
       text-transform: uppercase; margin-bottom: 8px; display: flex; justify-content: space-between;
     }
     .prob-bar-container { display: flex; height: 12px; border-radius: 6px; overflow: hidden; margin-bottom: 6px; }
-    .prob-arg { background: #38bdf8; width: 44%; transition: width 0.5s; }
-    .prob-draw { background: #94a3b8; width: 28%; transition: width 0.5s; }
-    .prob-esp { background: #ef4444; width: 28%; transition: width 0.5s; }
+    .prob-arg { background: #38bdf8; width: 48%; transition: width 0.5s; }
+    .prob-draw { background: #94a3b8; width: 26%; transition: width 0.5s; }
+    .prob-esp { background: #ef4444; width: 26%; transition: width 0.5s; }
     .prob-labels { display: flex; justify-content: space-between; font-size: 11px; font-weight: 800; }
 
     .tactical-card {
@@ -221,7 +221,6 @@
     .chat-msg { font-size: 12px; background: rgba(255, 255, 255, 0.04); padding: 6px 10px; border-radius: 8px; line-height: 1.3; }
     .chat-user { font-weight: 800; color: #38bdf8; }
 
-    /* BOTONES DE COMPARTIR CLAROS */
     .share-title { font-size: 12px; font-weight: 800; color: var(--text-secondary); text-transform: uppercase; margin-top: 10px; text-align: center; }
     .share-container { display: flex; gap: 8px; margin-top: 6px; }
     .share-link { flex: 1; text-align: center; padding: 12px; border-radius: 10px; text-decoration: none; font-weight: 800; font-size: 13px; }
@@ -272,7 +271,7 @@
     <header>
       <div class="live-badge">
         <div class="pulse"></div>
-        COBERTURA TÁCTICA & IA EN VIVO
+        PARTIDO EN CURSO (EN VIVO)
       </div>
       <h1 class="main-title">🇦🇷 ARGENTINA vs ESPAÑA 🇪🇸</h1>
     </header>
@@ -291,12 +290,12 @@
       <script src="https://www.highperformanceformat.com/e68d4e49291b85f5223bc60bffe0f603/invoke.js"></script>
     </div>
 
-    <!-- CANCHA DE FÚTBOL ILUSTRADA CON MARCADOR Y FIGURAS CLAVE (MESSI VS LAMINE YAMAL) -->
+    <!-- CANCHA DE FÚTBOL ILUSTRADA CON MARCADOR EN VIVO -->
     <div class="pitch-container">
       <div class="pitch-center-circle"></div>
       
       <div class="scoreboard-overlay">
-        <!-- ARGENTINA: LIONEL MESSI -->
+        <!-- ARGENTINA -->
         <div class="team-box">
           <span class="team-flag">🇦🇷</span>
           <div class="player-badge">👑 L. Messi #10</div>
@@ -306,10 +305,10 @@
         <!-- MARCADOR -->
         <div class="score-box">
           <div class="score-numbers" id="scoreText">0 - 0</div>
-          <div class="match-time" id="timeText">⏱️ Min 0'</div>
+          <div class="match-time" id="timeText">⏱️ Min 24' (1ºT)</div>
         </div>
 
-        <!-- ESPAÑA: LAMINE YAMAL / RODRI -->
+        <!-- ESPAÑA -->
         <div class="team-box">
           <span class="team-flag">🇪🇸</span>
           <div class="player-badge">⚡ L. Yamal #19</div>
@@ -329,12 +328,12 @@
       <div class="xg-container">
         <div class="xg-box">
           <div class="xg-label">xG Argentina</div>
-          <div class="xg-val" id="xgArg">1.38</div>
+          <div class="xg-val" id="xgArg">1.45</div>
         </div>
         <div style="font-size: 11px; font-weight: 800; color: var(--text-secondary);">GOLES ESPERADOS</div>
         <div class="xg-box">
           <div class="xg-label">xG España</div>
-          <div class="xg-val" id="xgEsp">0.92</div>
+          <div class="xg-val" id="xgEsp">1.12</div>
         </div>
       </div>
 
@@ -346,7 +345,7 @@
           ⚡ <b>Lamine Yamal:</b> Busca el mano a mano en banda derecha para desbordar la marca lateral.
         </div>
         <div class="insight-item">
-          💡 <b>Pronóstico IA:</b> El patrón de ataque prevé gol en el primer tiempo.
+          💡 <b>Pronóstico IA:</b> Alta intensidad en área rival. Apuesta recomendada a córners o gol en 1T.
         </div>
       </div>
     </div>
@@ -363,9 +362,9 @@
         <div class="prob-esp" id="pEsp"></div>
       </div>
       <div class="prob-labels">
-        <span style="color: #38bdf8;">🇦🇷 Arg <b id="valArg">46%</b></span>
-        <span style="color: #94a3b8;">Empate <b id="valDraw">27%</b></span>
-        <span style="color: #ef4444;">🇪🇸 Esp <b id="valEsp">27%</b></span>
+        <span style="color: #38bdf8;">🇦🇷 Arg <b id="valArg">48%</b></span>
+        <span style="color: #94a3b8;">Empate <b id="valDraw">26%</b></span>
+        <span style="color: #ef4444;">🇪🇸 Esp <b id="valEsp">26%</b></span>
       </div>
     </div>
 
@@ -398,7 +397,7 @@
       <div class="chat-title">💬 Reacciones de la Hinchada en Vivo</div>
       <div class="chat-box" id="chatFeed">
         <div class="chat-msg"><span class="chat-user">Mateo_Arg:</span> ¡Que partidazo de Messi hoy! 🇦🇷🔥</div>
-        <div class="chat-msg"><span class="chat-user">Carlos_Madrid:</span> ¡Lamine Yamal encarando en cada pelota! 🇪🇸</div>
+        <div class="chat-msg"><span class="chat-user">Carlos_Madrid:</span> ¡España controlando la pelota, partido parejo! 🇪🇸</div>
       </div>
     </div>
 
@@ -414,7 +413,7 @@
     </div>
   </div>
 
-  <!-- BARRA DE ANUNCIO ADSTERRA FLOTANTE EN EL PIE DE PÁGINA (SIEMPRE VISIBLE) -->
+  <!-- BARRA DE ANUNCIO ADSTERRA FLOTANTE EN EL PIE DE PÁGINA -->
   <div class="sticky-bottom-ad">
     <script>
       atOptions = {
@@ -449,11 +448,21 @@
       document.getElementById('calcWin').innerText = (10 * odd).toFixed(2);
     }
 
+    // MOTOR DE PARTIDO EN VIVO (INCREMENTO AUTOMÁTICO DE MINUTO)
+    let liveMinute = 24;
+    setInterval(() => {
+      if (liveMinute < 90) {
+        liveMinute += 1;
+        const period = liveMinute <= 45 ? "(1ºT)" : "(2ºT)";
+        document.getElementById('timeText').innerText = `⏱️ Min ${liveMinute}' ${period}`;
+      }
+    }, 25000); // Avanza cada 25 segundos para mantener el partido activo
+
     // Comentarios simulados dinámicos
     const fanComments = [
-      "<span class='chat-user'>Sofi_Albiceleste:</span> ¡El xG de Argentina subió a 1.45 con la llegada de Messi!",
+      "<span class='chat-user'>Sofi_Albiceleste:</span> ¡El xG de Argentina subió a 1.48 con el remate de Messi!",
       "<span class='chat-user'>Diego_Futbol:</span> Lamine Yamal está buscando el desborde constante.",
-      "<span class='chat-user'>Andres_Bet:</span> ¡Le entré al 'Ambos Anotan' en Betplay según el centro de inteligencia!",
+      "<span class='chat-user'>Andres_Bet:</span> ¡Le entré al 'Ambos Anotan' en Betplay según la IA!",
       "<span class='chat-user'>Lucho_10:</span> ¡Dibu atajando como un gigante!"
     ];
 
@@ -476,7 +485,7 @@
       [
         "🎯 <b>Presión Alta:</b> España adelanta sus líneas de presión forzando recuperaciones en campo rival.",
         "⚠️ <b>Duelo Clave:</b> De Paul gana los duelos individuales frente al mediocampo ibérico.",
-        "💡 <b>Pronóstico Inteligente:</b> Alta probabilidad de gol (+0.5) en los próximos 15 minutos en Betplay."
+        "💡 <b>Pronóstico Inteligente:</b> Alta probabilidad de gol (+0.5) en los próximos minutos en Betplay."
       ],
       [
         "🎯 <b>Ataque Directo:</b> Argentina acumula 1.65 goles esperados (xG) superando la eficiencia defensiva rival.",
@@ -492,11 +501,11 @@
       const container = document.getElementById('tacticalInsights');
       container.innerHTML = insights.map(i => `<div class="insight-item">${i}</div>`).join('');
 
-      document.getElementById('xgArg').innerText = (1.20 + Math.random() * 0.5).toFixed(2);
-      document.getElementById('xgEsp').innerText = (0.80 + Math.random() * 0.4).toFixed(2);
+      document.getElementById('xgArg').innerText = (1.30 + Math.random() * 0.4).toFixed(2);
+      document.getElementById('xgEsp').innerText = (0.90 + Math.random() * 0.4).toFixed(2);
     }
 
-    setInterval(updateTactics, 20000);
+    setInterval(updateTactics, 18000);
 
     // Compartir URLs
     const pageUrl = encodeURIComponent(window.location.href);
