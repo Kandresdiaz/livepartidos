@@ -3,11 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>🔴 DEPORTES EN VIVO | Radar Real 2D, Jugadores con Dorsal & Pronósticos</title>
+  <title>🔴 DEPORTES EN VIVO | Arena Multideporte 2D & Pronósticos IA</title>
   
   <!-- Meta Tags para Facebook / WhatsApp / Twitter -->
-  <meta property="og:title" content="🔴 EN VIVO: Radar 2D Real de Jugadores | Marcadores Oficiales">
-  <meta property="og:description" content="Seguimiento en tiempo real con números de camisetas, dorsales reales y estadísticas oficiales.">
+  <meta property="og:title" content="🔴 EN VIVO: Deportes en Vivo | Canchas & Arenas 2D">
+  <meta property="og:description" content="Seguimiento real de Fútbol, UFC, F1 y NBA con gráficos de cancha adaptables en tiempo real.">
   <meta property="og:type" content="website">
 
   <!-- SCRIPT ADSTERRA: POPUNDER Y SOCIAL BAR AUTOMÁTICO -->
@@ -119,26 +119,52 @@
       align-items: center; z-index: 8888; padding: 4px 0; backdrop-filter: blur(8px);
     }
 
-    /* RADAR 2D DE CANCHA REAL CON JUGADORES Y DORSALES REALES */
+    /* ARENA ADAPTABLE MULTI-DEPORTE */
     .pitch-container {
       position: relative; width: 100%; height: 260px;
-      background: 
-        linear-gradient(90deg, rgba(56, 189, 248, 0.25) 0%, transparent 40%, transparent 60%, rgba(239, 68, 68, 0.25) 100%),
-        linear-gradient(180deg, #15803d 0%, #166534 100%);
+      background: #166534; /* Fondo default verde fútbol */
       border: 3px solid rgba(255, 255, 255, 0.4); border-radius: 16px; overflow: hidden;
       margin-bottom: 12px; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6); display: flex;
       flex-direction: column; justify-content: space-between; padding: 12px;
+      transition: background 0.5s ease, border-color 0.5s ease;
     }
-    .pitch-container::before {
+
+    /* ESTILO ADAPTADO - CANCHA FÚTBOL */
+    .pitch-soccer {
+      background: 
+        linear-gradient(90deg, rgba(56, 189, 248, 0.25) 0%, transparent 40%, transparent 60%, rgba(239, 68, 68, 0.25) 100%),
+        linear-gradient(180deg, #15803d 0%, #166534 100%);
+    }
+    .pitch-soccer::before {
       content: ''; position: absolute; top: 50%; left: 0; right: 0; height: 2px;
       background: rgba(255, 255, 255, 0.3); transform: translateY(-50%);
     }
+
+    /* ESTILO ADAPTADO - OCTÁGONO UFC / BOXEO */
+    .pitch-ufc {
+      background: radial-gradient(circle, #334155 30%, #0f172a 100%);
+      border-color: #f59e0b;
+    }
+
+    /* ESTILO ADAPTADO - CIRCUITO F1 */
+    .pitch-f1 {
+      background: radial-gradient(circle, #475569 20%, #1e293b 80%);
+      border-color: #ef4444;
+    }
+
+    /* ESTILO ADAPTADO - DUELA BALONCESTO NBA */
+    .pitch-nba {
+      background: linear-gradient(180deg, #b45309 0%, #78350f 100%);
+      border-color: #f59e0b;
+    }
+
+    /* CÍRCULO CENTRAL ADAPTABLE */
     .pitch-center-circle {
       position: absolute; top: 50%; left: 50%; width: 90px; height: 90px;
       border: 2px solid rgba(255, 255, 255, 0.3); border-radius: 50%; transform: translate(-50%, -50%); pointer-events: none;
     }
 
-    /* BALÓN ANIMADO 2D EN LA CANCHA */
+    /* BALÓN ANIMADO DE DEPORTE */
     .animated-ball {
       position: absolute;
       top: 50%; left: 50%;
@@ -152,7 +178,7 @@
       z-index: 5;
     }
 
-    /* BADGE DE JUGADOR REAL CON DORSAL EN CANCHA */
+    /* BADGE DEL ATLETA ACTIVO EN CANCHA */
     .active-player-pin {
       position: absolute;
       top: 42%; left: 68%;
@@ -335,7 +361,7 @@
     <header>
       <div class="live-badge">
         <div class="pulse"></div>
-        TRANSMISIÓN REAL OFICIAL (EN VIVO)
+        TRANSMISIÓN DEPORTIVA (EN VIVO)
       </div>
       <h1 class="main-title" id="matchTitleHeader">🇦🇷 ARGENTINA vs ESPAÑA 🇪🇸</h1>
     </header>
@@ -347,10 +373,10 @@
 
     <!-- PESTAÑAS DE CATEGORÍA DE DEPORTES -->
     <div class="sport-category-bar">
-      <button class="sport-tab active" onclick="switchSportCategory('soccer', this)">⚽ Fútbol</button>
-      <button class="sport-tab" onclick="switchSportCategory('ufc', this)">🥊 Boxeo / UFC</button>
-      <button class="sport-tab" onclick="switchSportCategory('f1', this)">🏎️ Fórmula 1</button>
-      <button class="sport-tab" onclick="switchSportCategory('nba', this)">🏀 Baloncesto NBA</button>
+      <button class="sport-tab active" id="tab-soccer" onclick="switchSportCategory('soccer', this)">⚽ Fútbol</button>
+      <button class="sport-tab" id="tab-ufc" onclick="switchSportCategory('ufc', this)">🥊 Boxeo / UFC</button>
+      <button class="sport-tab" id="tab-f1" onclick="switchSportCategory('f1', this)">🏎️ Fórmula 1</button>
+      <button class="sport-tab" id="tab-nba" onclick="switchSportCategory('nba', this)">🏀 Baloncesto NBA</button>
     </div>
 
     <!-- SELECTOR DE PARTIDO REUTILIZABLE -->
@@ -377,23 +403,23 @@
       <script src="https://www.highperformanceformat.com/e68d4e49291b85f5223bc60bffe0f603/invoke.js"></script>
     </div>
 
-    <!-- CANCHA / ARENA ILUSTRADA CON JUGADORES Y DORSALES REALES EN TIEMPO REAL -->
-    <div class="pitch-container" id="arenaPitch">
-      <div class="pitch-center-circle"></div>
+    <!-- ARENA MULTI-DEPORTE ADAPTABLE -->
+    <div class="pitch-container pitch-soccer" id="arenaPitch">
+      <div class="pitch-center-circle" id="arenaCircle"></div>
       
-      <!-- BALÓN 2D EN MOVIMIENTO -->
+      <!-- BALÓN U OBJETO ANIMADO -->
       <div class="animated-ball" id="liveBall">⚽</div>
 
-      <!-- BADGE DE JUGADOR CON DORSAL EN TIEMPO REAL -->
+      <!-- BADGE DE ATLETA EN TIEMPO REAL -->
       <div class="active-player-pin" id="playerPin">👑 #10 L. Messi (Atacando)</div>
 
-      <!-- CARTEL FLOTANTE DE ACCIÓN DE BALÓN -->
+      <!-- CARTEL FLOTANTE DE ACCIÓN -->
       <div class="action-ticker-banner" id="actionBanner">
         ⚡ REMATE A PUERTA: #10 L. Messi saca potente disparo al arco...
       </div>
 
       <div class="scoreboard-overlay">
-        <!-- EQUIPO LOCAL -->
+        <!-- LOCAL -->
         <div class="team-box">
           <span class="team-flag" id="flagHome">🇦🇷</span>
           <div class="player-badge" id="playerHome">👑 L. Messi #10</div>
@@ -406,7 +432,7 @@
           <div class="match-time" id="timeText">⏱️ Min 48' (2ºT)</div>
         </div>
 
-        <!-- EQUIPO VISITANTE -->
+        <!-- VISITANTE -->
         <div class="team-box">
           <span class="team-flag" id="flagAway">🇪🇸</span>
           <div class="player-badge" id="playerAway">⚡ L. Yamal #19</div>
@@ -471,81 +497,6 @@
       </div>
     </div>
 
-    <!-- CENTRO DE ANÁLISIS TÁCTICO EXCLUSIVO DE IA -->
-    <div class="tactical-card">
-      <div class="tactical-title">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
-        Centro de Inteligencia Táctica & Métricas (Live)
-      </div>
-
-      <!-- METRICAS DE GOLES ESPERADOS (xG) -->
-      <div class="xg-container">
-        <div class="xg-box">
-          <div class="xg-label" id="xgLabelHome">Efectividad Local</div>
-          <div class="xg-val" id="xgArg">1.62</div>
-        </div>
-        <div style="font-size: 11px; font-weight: 800; color: var(--text-secondary);">GOLES ESPERADOS</div>
-        <div class="xg-box">
-          <div class="xg-label" id="xgLabelAway">Efectividad Visitante</div>
-          <div class="xg-val" id="xgEsp">1.18</div>
-        </div>
-      </div>
-
-      <div class="tactical-insights" id="tacticalInsights">
-        <div class="insight-item">
-          👑 <b>Análisis Estrella:</b> Presión alta en zona ofensiva y transiciones verticales rápidas.
-        </div>
-        <div class="insight-item">
-          ⚡ <b>Duelo Clave:</b> Superioridad en bandas para generar situaciones de peligro en área rival.
-        </div>
-        <div class="insight-item">
-          💡 <b>Pronóstico IA:</b> Alta intensidad en este periodo del encuentro.
-        </div>
-      </div>
-    </div>
-
-    <!-- PROBABILIDAD EN VIVO EN TIEMPO REAL -->
-    <div class="win-prob-card">
-      <div class="win-prob-title">
-        <span>🤖 Probabilidad de Victoria (IA Engine)</span>
-        <span style="color: var(--accent-gold);">EN VIVO</span>
-      </div>
-      <div class="prob-bar-container">
-        <div class="prob-arg" id="pArg"></div>
-        <div class="prob-draw" id="pDraw"></div>
-        <div class="prob-esp" id="pEsp"></div>
-      </div>
-      <div class="prob-labels">
-        <span style="color: #38bdf8;" id="lblHome">Local <b>52%</b></span>
-        <span style="color: #94a3b8;">Empate <b>24%</b></span>
-        <span style="color: #ef4444;" id="lblAway">Visitante <b>24%</b></span>
-      </div>
-    </div>
-
-    <!-- SIMULADOR DE CUOTAS PARA APUESTAS (VINCULADO A BETPLAY) -->
-    <div class="bet-simulator-card">
-      <div class="sim-title">⚽ VER CUOTAS Y APOSTAR EN BETPLAY EN VIVO</div>
-      <div class="odds-grid">
-        <div class="odd-box selected" onclick="selectOdd(this, 'Local', 2.35)">
-          <div class="odd-team" id="oddBtnHome">Gana Local</div>
-          <div class="odd-value">2.35</div>
-        </div>
-        <div class="odd-box" onclick="selectOdd(this, 'Empate', 3.10)">
-          <div class="odd-team">🤝 Empate</div>
-          <div class="odd-value">3.10</div>
-        </div>
-        <div class="odd-box" onclick="selectOdd(this, 'Visitante', 2.90)">
-          <div class="odd-team" id="oddBtnAway">Gana Visitante</div>
-          <div class="odd-value">2.90</div>
-        </div>
-      </div>
-
-      <!-- BOTÓN VINCULADO DIRECTO A BETPLAY -->
-      <a href="https://betplay.com.co" id="adsterraLink" target="_blank" class="ad-btn" style="margin-bottom: 0;">
-        🔥 APOSTAR EN BETPLAY - GANAR $<span id="calcWin">23.50</span> ⚽
-      </a>
-    </div>
-
     <!-- CHAT EN VIVO DE HINCHAS -->
     <div class="chat-card">
       <div class="chat-title">💬 Reacciones de la Hinchada en Vivo</div>
@@ -582,6 +533,8 @@
   </div>
 
   <script>
+    let activeSport = 'soccer';
+
     // DASHBOARD ADMIN & AUTOMATIZACIÓN DE FACEBOOK GRAPH API
     function openAdminModal() {
       document.getElementById('adminModal').classList.add('active');
@@ -639,114 +592,59 @@
       }
     }
 
-    // SINCRONIZADOR DINÁMICO DE ARCHIVO JSON (match_data.json)
-    async function syncMatchDataJSON() {
-      try {
-        const response = await fetch('match_data.json?t=' + new Date().getTime());
-        if (response.ok) {
-          const data = await response.json();
-          
-          // Actualizar interfaz con datos del JSON en tiempo real
-          document.getElementById('matchTitleHeader').innerText = data.matchTitle;
-          document.getElementById('scoreText').innerText = data.score;
-          document.getElementById('timeText').innerText = data.time;
-          
-          document.getElementById('flagHome').innerText = data.homeTeam.flag;
-          document.getElementById('nameHome').innerText = data.homeTeam.name;
-          document.getElementById('playerHome').innerText = data.homeTeam.playerStar;
-          
-          document.getElementById('flagAway').innerText = data.awayTeam.flag;
-          document.getElementById('nameAway').innerText = data.awayTeam.name;
-          document.getElementById('playerAway').innerText = data.awayTeam.playerStar;
-          
-          document.getElementById('cornersVal').innerText = data.corners;
-          document.getElementById('shotsVal').innerText = data.shots;
-          document.getElementById('posVal').innerText = data.possession;
-          
-          // Actualizar Pin de Jugador Activo en la cancha
-          const ballEl = document.getElementById('liveBall');
-          const pinEl = document.getElementById('playerPin');
-          const bannerEl = document.getElementById('actionBanner');
-          
-          if(data.activePlayer) {
-            ballEl.style.top = data.activePlayer.top;
-            ballEl.style.left = data.activePlayer.left;
-            pinEl.style.top = (parseFloat(data.activePlayer.top) - 10) + "%";
-            pinEl.style.left = data.activePlayer.left;
-            pinEl.innerText = `⚽ #${data.activePlayer.number} ${data.activePlayer.name}`;
-            bannerEl.innerText = data.activePlayer.actionText;
-          }
-        }
-      } catch (e) {
-        console.log("No se pudo cargar el JSON dinámico, usando simulación activa local.");
-      }
-    }
-
-    // Ejecutar sincronización del JSON cada 5 segundos
-    setInterval(syncMatchDataJSON, 5000);
-    syncMatchDataJSON();
-
-    // MOTOR REAL DE JUGADORES CON DORSALES EN TIEMPO REAL (Respaldo Local)
-    const realPlayerEvents = [
-      { top: "42%", left: "68%", player: "👑 #10 L. Messi (Disparo a Puerta)", text: "🎯 REMATE A PUERTA: #10 L. Messi saca potente disparo al arco..." },
-      { top: "35%", left: "78%", player: "⚡ #19 L. Yamal (Desborde Lateral)", text: "⚡ REGATE EN BANDA: #19 L. Yamal encarando en el área rival..." },
-      { top: "60%", left: "85%", player: "⚽ #9 Mbappé (Presión Ofensiva)", text: "🔥 INCURSIÓN AL ÁREA: #9 Mbappé buscando pase filtrado..." },
-      { top: "70%", left: "90%", player: "⛳ #7 Vinicius Jr (Tiro de Esquina)", text: "⛳ CÓRNER EN VIVO: #7 Vinicius cobrando tiro de esquina..." },
-      { top: "50%", left: "25%", player: "🛡️ #7 L. Díaz (Recuperación)", text: "🛡️ RECUPERACIÓN DEFENSIVA: #7 L. Díaz intercepta y sale a velocidad..." }
-    ];
-
-    let realEventIndex = 0;
-    setInterval(() => {
-      // Solo correr simulación si no se ha sincronizado un JSON externo activo
-      if (document.getElementById('matchTitleHeader').innerText === "ARGENTINA vs ESPAÑA") {
-        realEventIndex = (realEventIndex + 1) % realPlayerEvents.length;
-        const ev = realPlayerEvents[realEventIndex];
-        const ballEl = document.getElementById('liveBall');
-        const pinEl = document.getElementById('playerPin');
-        const bannerEl = document.getElementById('actionBanner');
-
-        if (ballEl && pinEl && bannerEl) {
-          ballEl.style.top = ev.top;
-          ballEl.style.left = ev.left;
-          pinEl.style.top = (parseFloat(ev.top) - 10) + "%";
-          pinEl.style.left = ev.left;
-          pinEl.innerText = ev.player;
-          bannerEl.innerText = ev.text;
-        }
-      }
-    }, 4500);
-
-    // Cambiar categoría de Deporte
+    // Cambiar categoría de Deporte y adaptar la Arena Visual
     function switchSportCategory(sport, btn) {
       document.querySelectorAll('.sport-tab').forEach(b => b.classList.remove('active'));
       btn.classList.add('active');
+      activeSport = sport;
 
-      const selectBox = document.getElementById('matchSelectBox');
-      if(sport === 'ufc') {
-        selectBox.innerHTML = `
-          <option value="ufc-1">🥊 Canelo Álvarez vs Edgar Berlanga (Boxeo)</option>
-          <option value="ufc-2">🥊 Jon Jones vs Stipe Miocic (UFC Peso Pesado)</option>
-        `;
-        changeMatch('ufc-1');
-      } else if(sport === 'f1') {
-        selectBox.innerHTML = `
-          <option value="f1-1">🏎️ GP de Monaco (Fórmula 1 Carrera)</option>
-          <option value="f1-2">🏎️ GP de España (Fórmula 1 Carrera)</option>
-        `;
-        changeMatch('f1-1');
-      } else if(sport === 'nba') {
-        selectBox.innerHTML = `
-          <option value="nba-1">🏀 Boston Celtics vs LA Lakers (NBA Finals)</option>
-          <option value="nba-2">🏀 Golden State Warriors vs Miami Heat (NBA)</option>
-        `;
-        changeMatch('nba-1');
-      } else {
-        selectBox.innerHTML = `
+      const arena = document.getElementById('arenaPitch');
+      const ball = document.getElementById('liveBall');
+      const circle = document.getElementById('arenaCircle');
+
+      // Limpiar clases previas de la cancha
+      arena.className = "pitch-container";
+
+      if(sport === 'soccer') {
+        arena.classList.add('pitch-soccer');
+        ball.innerText = "⚽";
+        circle.style.display = "block";
+        document.getElementById('matchSelectBox').innerHTML = `
           <option value="arg-esp">🇦🇷 Argentina vs España 🇪🇸 (Final Fútbol)</option>
           <option value="rm-barca">🇪🇸 Real Madrid vs Barcelona 🇪🇸 (El Clásico)</option>
           <option value="col-arg">🇨🇴 Colombia vs Argentina 🇦🇷 (Eliminatorias)</option>
         `;
         changeMatch('arg-esp');
+      } 
+      else if(sport === 'ufc') {
+        arena.classList.add('pitch-ufc');
+        ball.innerText = "🥊";
+        circle.style.display = "none";
+        document.getElementById('matchSelectBox').innerHTML = `
+          <option value="ufc-1">🥊 Canelo Álvarez vs Edgar Berlanga (Boxeo)</option>
+          <option value="ufc-2">🥊 Jon Jones vs Stipe Miocic (UFC Peso Pesado)</option>
+        `;
+        changeMatch('ufc-1');
+      } 
+      else if(sport === 'f1') {
+        arena.classList.add('pitch-f1');
+        ball.innerText = "🏎️";
+        circle.style.display = "none";
+        document.getElementById('matchSelectBox').innerHTML = `
+          <option value="f1-1">🏎️ GP de Monaco (Fórmula 1 Carrera)</option>
+          <option value="f1-2">🏎️ GP de España (Fórmula 1 Carrera)</option>
+        `;
+        changeMatch('f1-1');
+      } 
+      else if(sport === 'nba') {
+        arena.classList.add('pitch-nba');
+        ball.innerText = "🏀";
+        circle.style.display = "block";
+        document.getElementById('matchSelectBox').innerHTML = `
+          <option value="nba-1">🏀 Boston Celtics vs LA Lakers (NBA Finals)</option>
+          <option value="nba-2">🏀 Golden State Warriors vs Miami Heat (NBA)</option>
+        `;
+        changeMatch('nba-1');
       }
     }
 
@@ -801,46 +699,51 @@
       document.getElementById('calcWin').innerText = (10 * odd).toFixed(2);
     }
 
-    // MOTOR EN VIVO CONTINUO DE MINUTOS
-    let liveMinute = 48;
-    let homeCorners = 6;
-    let awayCorners = 4;
-    let homeShots = 7;
-    let awayShots = 5;
+    // MOTOR EN VIVO CONTINUO DE BALÓN Y EVENTOS ADAPTADOS A CADA DEPORTE
+    const sportEvents = {
+      soccer: [
+        { top: "42%", left: "68%", player: "👑 #10 L. Messi (Disparo a Puerta)", text: "🎯 REMATE A PUERTA: #10 L. Messi saca potente disparo al arco..." },
+        { top: "35%", left: "78%", player: "⚡ #19 L. Yamal (Desborde Lateral)", text: "⚡ REGATE EN BANDA: #19 L. Yamal encarando en el área rival..." },
+        { top: "70%", left: "90%", player: "⛳ #7 Vinicius Jr (Tiro de Esquina)", text: "⛳ CÓRNER EN VIVO: #7 Vinicius cobrando tiro de esquina..." }
+      ],
+      ufc: [
+        { top: "50%", left: "48%", player: "🥊 Canelo (Jab Directo)", text: "🥊 COMBATE: Canelo conecta potente jab directo en el rostro de Berlanga..." },
+        { top: "48%", left: "52%", player: "🥊 Berlanga (Gancho al Hígado)", text: "🥊 CONTRAGOLPE: Berlanga responde con gancho de izquierda al cuerpo..." }
+      ],
+      f1: [
+        { top: "20%", left: "70%", player: "🏎️ Verstappen (Líder GP)", text: "🏎️ CARRERA: Verstappen marca récord de vuelta en el sector 2..." },
+        { top: "25%", left: "65%", player: "🏎️ Leclerc (Presión P2)", text: "⚡ PERSECUCIÓN: Leclerc reduce la distancia a solo +0.450s..." }
+      ],
+      nba: [
+        { top: "50%", left: "80%", player: "🏀 LeBron James (Volcada)", text: "🏀 ANOTACIÓN: ¡LeBron James penetra la defensa y clava el balón! (2 PTS)" },
+        { top: "45%", left: "20%", player: "☘️ J. Tatum (Triple)", text: "🎯 TRIPLE: Tatum encesta desde la esquina sin marca..." }
+      ]
+    };
 
+    let eventIndices = { soccer: 0, ufc: 0, f1: 0, nba: 0 };
+    
     setInterval(() => {
-      if (liveMinute < 90) {
-        liveMinute += 1;
-        const period = liveMinute <= 45 ? "(1ºT)" : (liveMinute <= 90 ? "(2ºT)" : "(Extra)");
-        document.getElementById('timeText').innerText = `⏱️ Min ${liveMinute}' ${period}`;
+      const currentList = sportEvents[activeSport];
+      let idx = eventIndices[activeSport];
+      idx = (idx + 1) % currentList.length;
+      eventIndices[activeSport] = idx;
 
-        if(liveMinute % 3 === 0) {
-          if(Math.random() > 0.5) homeCorners += 1; else awayCorners += 1;
-          document.getElementById('cornersVal').innerText = `${homeCorners} - ${awayCorners}`;
-        }
-        if(liveMinute % 2 === 0) {
-          if(Math.random() > 0.4) homeShots += 1; else awayShots += 1;
-          document.getElementById('shotsVal').innerText = `${homeShots} - ${awayShots}`;
-        }
+      const ev = currentList[idx];
+      const ballEl = document.getElementById('liveBall');
+      const pinEl = document.getElementById('playerPin');
+      const bannerEl = document.getElementById('actionBanner');
+
+      if (ballEl && pinEl && bannerEl) {
+        ballEl.style.top = ev.top;
+        ballEl.style.left = ev.left;
+        pinEl.style.top = (parseFloat(ev.top) - 10) + "%";
+        pinEl.style.left = ev.left;
+        pinEl.innerText = ev.player;
+        bannerEl.innerText = ev.text;
       }
-    }, 12000);
+    }, 4500);
 
-    const fanComments = [
-      "<span class='chat-user'>Sofi_Sport:</span> ¡Increíble remate al arco del #10 Lionel Messi en el minuto " + liveMinute + "!!",
-      "<span class='chat-user'>Diego_Futbol:</span> Desborde por la banda de #19 Lamine Yamal.",
-      "<span class='chat-user'>Andres_Bet:</span> ¡La IA acaba de acertar el pronóstico de la combinada en Betplay!",
-      "<span class='chat-user'>Lucho_10:</span> ¡Atajada impresionante del arquero!"
-    ];
-
-    setInterval(() => {
-      const feed = document.getElementById('chatFeed');
-      const randomComment = fanComments[Math.floor(Math.random() * fanComments.length)];
-      const msg = document.createElement('div');
-      msg.className = 'chat-msg';
-      msg.innerHTML = randomComment;
-      feed.insertBefore(msg, feed.firstChild);
-    }, 6000);
-
+    // Compartir URLs
     const pageUrl = encodeURIComponent(window.location.href);
     document.getElementById('waShare').href += pageUrl;
     document.getElementById('fbShare').href += pageUrl;
