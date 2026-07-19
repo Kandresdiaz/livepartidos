@@ -44,7 +44,7 @@
       flex-direction: column;
       align-items: center;
       padding: 10px;
-      padding-bottom: 70px; /* Espacio para barra de anuncios flotante inferior */
+      padding-bottom: 70px;
     }
 
     .container { width: 100%; max-width: 680px; margin: 0 auto; }
@@ -95,7 +95,6 @@
       min-height: 50px;
     }
 
-    /* BARRA DE ANUNCIOS FLOTANTE INFERIOR (MÁXIMO CPM) */
     .sticky-bottom-ad {
       position: fixed;
       bottom: 0; left: 0; width: 100%;
@@ -109,10 +108,11 @@
       backdrop-filter: blur(8px);
     }
 
+    /* ESTADIO / CANCHA DE FÚTBOL ILUSTRADA CON AVATARES DE JUGADORES */
     .pitch-container {
       position: relative;
       width: 100%;
-      height: 210px;
+      height: 230px;
       background: linear-gradient(180deg, #15803d 0%, #166534 100%);
       border: 3px solid rgba(255, 255, 255, 0.4);
       border-radius: 16px;
@@ -135,13 +135,14 @@
 
     .scoreboard-overlay {
       position: relative; z-index: 2; display: flex; align-items: center; justify-content: space-between;
-      background: rgba(15, 23, 42, 0.88); backdrop-filter: blur(8px); border: 1px solid rgba(255, 255, 255, 0.2);
-      border-radius: 12px; padding: 10px 14px; width: 100%; margin: auto 0;
+      background: rgba(15, 23, 42, 0.9); backdrop-filter: blur(8px); border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 12px; padding: 12px 14px; width: 100%; margin: auto 0;
     }
     .team-box { flex: 1; text-align: center; }
-    .team-flag { font-size: 26px; display: block; margin-bottom: 2px; }
-    .team-name { font-size: 13px; font-weight: 800; color: #ffffff; text-transform: uppercase; }
-    .score-box { text-align: center; padding: 0 12px; }
+    .team-flag { font-size: 28px; display: block; margin-bottom: 2px; }
+    .player-badge { font-size: 11px; font-weight: 800; color: #facc15; background: rgba(250, 204, 21, 0.15); padding: 2px 6px; border-radius: 4px; display: inline-block; margin-bottom: 2px; }
+    .team-name { font-size: 13px; font-weight: 900; color: #ffffff; text-transform: uppercase; }
+    .score-box { text-align: center; padding: 0 10px; }
     .score-numbers { font-size: 32px; font-weight: 900; color: #facc15; letter-spacing: 2px; line-height: 1; }
     .match-time { font-size: 11px; font-weight: 800; color: var(--accent-green); margin-top: 4px; text-transform: uppercase; }
 
@@ -205,7 +206,6 @@
     .odd-value { font-size: 16px; font-weight: 900; color: #facc15; }
     .odd-box.selected .odd-value { color: white; }
 
-    /* BOTONES DE APUESTAS DIRIGIDOS A BETPLAY */
     .ad-btn {
       display: flex; align-items: center; justify-content: center; gap: 8px; width: 100%;
       background: linear-gradient(90deg, #dc2626 0%, #ef4444 100%); color: #ffffff;
@@ -221,10 +221,12 @@
     .chat-msg { font-size: 12px; background: rgba(255, 255, 255, 0.04); padding: 6px 10px; border-radius: 8px; line-height: 1.3; }
     .chat-user { font-weight: 800; color: #38bdf8; }
 
-    .share-container { display: flex; gap: 8px; margin-top: 12px; }
-    .share-link { flex: 1; text-align: center; padding: 10px; border-radius: 10px; text-decoration: none; font-weight: 700; font-size: 13px; }
-    .share-wa { background: rgba(37, 211, 102, 0.15); color: #4ade80; border: 1px solid rgba(37, 211, 102, 0.3); }
-    .share-fb { background: rgba(24, 119, 242, 0.15); color: #60a5fa; border: 1px solid rgba(24, 119, 242, 0.3); }
+    /* BOTONES DE COMPARTIR CLAROS */
+    .share-title { font-size: 12px; font-weight: 800; color: var(--text-secondary); text-transform: uppercase; margin-top: 10px; text-align: center; }
+    .share-container { display: flex; gap: 8px; margin-top: 6px; }
+    .share-link { flex: 1; text-align: center; padding: 12px; border-radius: 10px; text-decoration: none; font-weight: 800; font-size: 13px; }
+    .share-wa { background: rgba(37, 211, 102, 0.2); color: #4ade80; border: 1px solid rgba(37, 211, 102, 0.4); }
+    .share-fb { background: rgba(24, 119, 242, 0.2); color: #60a5fa; border: 1px solid rgba(24, 119, 242, 0.4); }
 
     /* MODAL POPUP PUBLICITARIO VIP */
     .modal-overlay {
@@ -289,14 +291,15 @@
       <script src="https://www.highperformanceformat.com/e68d4e49291b85f5223bc60bffe0f603/invoke.js"></script>
     </div>
 
-    <!-- CANCHA DE FÚTBOL ILUSTRADA CON MARCADOR -->
+    <!-- CANCHA DE FÚTBOL ILUSTRADA CON MARCADOR Y FIGURAS CLAVE (MESSI VS LAMINE YAMAL) -->
     <div class="pitch-container">
       <div class="pitch-center-circle"></div>
       
       <div class="scoreboard-overlay">
-        <!-- ARGENTINA -->
+        <!-- ARGENTINA: LIONEL MESSI -->
         <div class="team-box">
           <span class="team-flag">🇦🇷</span>
+          <div class="player-badge">👑 L. Messi #10</div>
           <div class="team-name">ARGENTINA</div>
         </div>
 
@@ -306,15 +309,16 @@
           <div class="match-time" id="timeText">⏱️ Min 0'</div>
         </div>
 
-        <!-- ESPAÑA -->
+        <!-- ESPAÑA: LAMINE YAMAL / RODRI -->
         <div class="team-box">
           <span class="team-flag">🇪🇸</span>
+          <div class="player-badge">⚡ L. Yamal #19</div>
           <div class="team-name">ESPAÑA</div>
         </div>
       </div>
     </div>
 
-    <!-- CENTRO DE ANÁLISIS TÁCTICO EXCLUSIVO -->
+    <!-- CENTRO DE ANÁLISIS TÁCTICO EXCLUSIVO DE IA -->
     <div class="tactical-card">
       <div class="tactical-title">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
@@ -336,13 +340,13 @@
 
       <div class="tactical-insights" id="tacticalInsights">
         <div class="insight-item">
-          🎯 <b>Patrón Ofensivo:</b> Argentina explota el carril central-derecho con 72% de sus ataques buscando espaldas de laterales.
+          👑 <b>Lionel Messi:</b> Se posiciona entre líneas en la espalda de Rodri para generar superioridad numérica.
         </div>
         <div class="insight-item">
-          ⚠️ <b>Punto de Vulnerabilidad:</b> España sostiene posesión alta pero cede espacio en la transición tras pérdida.
+          ⚡ <b>Lamine Yamal:</b> Busca el mano a mano en banda derecha para desbordar la marca lateral.
         </div>
         <div class="insight-item">
-          💡 <b>Valor de Apuesta Recomendado:</b> IA detecta cuota inflada en 'Más de 8.5 Tiros de Esquina Totales'.
+          💡 <b>Pronóstico IA:</b> El patrón de ataque prevé gol en el primer tiempo.
         </div>
       </div>
     </div>
@@ -393,18 +397,19 @@
     <div class="chat-card">
       <div class="chat-title">💬 Reacciones de la Hinchada en Vivo</div>
       <div class="chat-box" id="chatFeed">
-        <div class="chat-msg"><span class="chat-user">Mateo_Arg:</span> ¡Increíble la lectura táctica de la IA sobre Messi! 🇦🇷🔥</div>
-        <div class="chat-msg"><span class="chat-user">Carlos_Madrid:</span> ¡España controlando la pelota, partido parejo! 🇪🇸</div>
+        <div class="chat-msg"><span class="chat-user">Mateo_Arg:</span> ¡Que partidazo de Messi hoy! 🇦🇷🔥</div>
+        <div class="chat-msg"><span class="chat-user">Carlos_Madrid:</span> ¡Lamine Yamal encarando en cada pelota! 🇪🇸</div>
       </div>
     </div>
 
     <!-- COMPARTIR EN REDES -->
+    <div class="share-title">📲 COMPARTE ESTA PÁGINA CON TUS AMIGOS Y GRUPOS</div>
     <div class="share-container">
-      <a href="https://api.whatsapp.com/send?text=Sigue Argentina vs España en vivo con estadísticas e IA aquí: " id="waShare" target="_blank" class="share-link share-wa">
-        📲 WhatsApp
+      <a href="https://api.whatsapp.com/send?text=Sigue la Final Argentina vs España con análisis de IA y estadísticas aquí: " id="waShare" target="_blank" class="share-link share-wa">
+        📲 Compartir en WhatsApp
       </a>
       <a href="https://www.facebook.com/sharer/sharer.php?u=" id="fbShare" target="_blank" class="share-link share-fb">
-        📘 Facebook
+        📘 Compartir en Facebook
       </a>
     </div>
   </div>
@@ -446,9 +451,9 @@
 
     // Comentarios simulados dinámicos
     const fanComments = [
-      "<span class='chat-user'>Sofi_Albiceleste:</span> ¡El xG de Argentina subió a 1.45! Se viene el primero.",
-      "<span class='chat-user'>Diego_Futbol:</span> La presión de España en la salida está durísima.",
-      "<span class='chat-user'>Andres_Bet:</span> ¡Le entré al 'Ambos Anotan' según el análisis táctico en Betplay!",
+      "<span class='chat-user'>Sofi_Albiceleste:</span> ¡El xG de Argentina subió a 1.45 con la llegada de Messi!",
+      "<span class='chat-user'>Diego_Futbol:</span> Lamine Yamal está buscando el desborde constante.",
+      "<span class='chat-user'>Andres_Bet:</span> ¡Le entré al 'Ambos Anotan' en Betplay según el centro de inteligencia!",
       "<span class='chat-user'>Lucho_10:</span> ¡Dibu atajando como un gigante!"
     ];
 
@@ -464,13 +469,13 @@
     // Motor de Análisis Táctico Exclusivo en tiempo real
     const tacticalUpdates = [
       [
-        "🎯 <b>Patrón Ofensivo:</b> Argentina explota el carril central-derecho con 72% de sus ataques buscando espaldas de laterales.",
-        "⚠️ <b>Punto de Vulnerabilidad:</b> España sostiene posesión alta pero cede espacio en la transición tras pérdida.",
-        "💡 <b>Valor de Apuesta Recomendado:</b> IA detecta cuota inflada en Betplay para 'Más de 8.5 Tiros de Esquina Totales'."
+        "👑 <b>Lionel Messi:</b> Se posiciona entre líneas en la espalda de Rodri para generar superioridad numérica.",
+        "⚡ <b>Lamine Yamal:</b> Busca el mano a mano en banda derecha para desbordar la marca lateral.",
+        "💡 <b>Pronóstico IA:</b> El patrón de ataque prevé gol en el primer tiempo."
       ],
       [
-        "🎯 <b>Presión Alta:</b> España adelanta sus líneas de presión forzando 5 recuperaciones en campo rival.",
-        "⚠️ <b>Duelo Clave:</b> De Paul gana el 75% de sus duelos individuales frente al mediocampo ibérico.",
+        "🎯 <b>Presión Alta:</b> España adelanta sus líneas de presión forzando recuperaciones en campo rival.",
+        "⚠️ <b>Duelo Clave:</b> De Paul gana los duelos individuales frente al mediocampo ibérico.",
         "💡 <b>Pronóstico Inteligente:</b> Alta probabilidad de gol (+0.5) en los próximos 15 minutos en Betplay."
       ],
       [
